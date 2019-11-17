@@ -1,4 +1,4 @@
-# Documentation 
+# Documentation
 
 Documentation is [available online](https://jv-conseil-internet-consulting.github.io/dkim-php-mail-signature/classes/JVconseil.DkimPhpMailSignature.DKIMconfig.html), though it may not be quite up to date or match your version exactly.
 
