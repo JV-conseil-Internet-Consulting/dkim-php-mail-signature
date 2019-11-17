@@ -1,0 +1,25 @@
+{
+    "name": "jv-conseil/dkim-php-mail-signature",
+    "description": "Sign your e-mails with DKIM and Domain Keys in PHP.",
+    "keywords": ["dkim", "dkim-signature", "mail", "composer"],
+    "type": "library",
+    "homepage": "http://www.jv-conseil.net",
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "JV conseil — Internet Consulting",
+            "email": "contact@jv-conseil.net",
+            "homepage": "http://www.jv-conseil.net",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+		"php": ">=7.1"
+    },
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "JVconseil\\DkimPhpMailSignature\\": "src/"
+        }
+    }
+}
