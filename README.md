@@ -1,5 +1,6 @@
 # DkimPhpMailSignature
 
+[![Packagist Version](https://img.shields.io/packagist/v/jv-conseil/dkim-php-mail-signature?color=orange)](https://packagist.org/packages/jv-conseil/dkim-php-mail-signature)
 [![License BSD 3-Clause](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](LICENSE)
 [![Follow JV conseil – Internet Consulting on Twitter](https://img.shields.io/twitter/follow/JVconseil.svg?style=social&logo=twitter)](https://twitter.com/JVconseil)
 
