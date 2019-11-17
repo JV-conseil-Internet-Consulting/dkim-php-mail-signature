@@ -30,7 +30,7 @@ mail($to, $subject, $message, $signed_headers.$headers) ;
 ```
 
 # Installation
-> Step to step guide to generate your encryption keys and populate them through your DNS records.
+> Step by Step guide to generate your encryption keys and populate them through your DNS records.
 
 ## Make your own copy of config file
 
