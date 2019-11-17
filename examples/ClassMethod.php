@@ -2,6 +2,11 @@
 /**
  * Class example with config file accessed through a class.
  * 
+ * To test this example enter in Terminal this command line:
+ * ```
+ * php ~/dkim-php-mail-signature/examples/ClassMethod.php
+ * ``` 
+ * 
  * @author JV conseil — Internet Consulting <contact@jv-conseil.net>
  * @see http://www.jv-conseil.net
  * @license BSD 3-Clause License, Copyright (c) 2019, JV conseil – Internet Consulting, All rights reserved.
@@ -9,7 +14,8 @@
  */
 
 
- require_once __DIR__ . '/../vendor/autoload.php' ; // Autoload files using Composer autoload
+ /** Call Composer Package JVconseil\DkimPhpMailSignature */
+require_once __DIR__ . '/../vendor/autoload.php' ; // Autoload files using Composer autoload
 
 use JVconseil\DkimPhpMailSignature\DKIMsign ;
 use JVconseil\DkimPhpMailSignature\DKIMconfig ;

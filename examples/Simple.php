@@ -2,6 +2,11 @@
 /**
  * Simple example test with config file accessed through a var.
  * 
+ * To test this example enter in Terminal this command line:
+ * ```
+ * php ~/dkim-php-mail-signature/examples/Simple.php
+ * ``` 
+ * 
  * @author JV conseil — Internet Consulting <contact@jv-conseil.net>
  * @see http://www.jv-conseil.net
  * @license BSD 3-Clause License, Copyright (c) 2019, JV conseil – Internet Consulting, All rights reserved.
@@ -9,11 +14,12 @@
  */
 
 
+/** Call Composer Package JVconseil\DkimPhpMailSignature */
 require_once __DIR__ . '/../vendor/autoload.php' ; // Autoload files using Composer autoload
 
 use JVconseil\DkimPhpMailSignature\DKIMsign ;
 
-// after setting up the config file and your DNS records :
+/** @var string $config after setting up the config file and your DNS records :*/
 $config = include_once(__DIR__ . '/../config/config.sample.inc.php') ;
 
 

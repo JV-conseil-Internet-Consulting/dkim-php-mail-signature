@@ -76,7 +76,7 @@
  * 
  * Edit your documentation with this command line:
  * ```
- * php ~/Documents/GitHub/dkim-php-mail-signature/vendor/bin/phpdoc -d ~/Documents/GitHub/dkim-php-mail-signature/src -d ~/Documents/GitHub/dkim-php-mail-signature/config -d ~/Documents/GitHub/dkim-php-mail-signature/examples -t ~/Documents/GitHub/dkim-php-mail-signature/docs/
+ * php ~/vendor/bin/phpdoc -d ~/dkim-php-mail-signature/ -t ~/Documents/GitHub/dkim-php-mail-signature/docs/
  * ```
  * 
  * @author JV conseil — Internet Consulting <contact@jv-conseil.net>
