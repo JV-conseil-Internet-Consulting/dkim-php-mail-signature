@@ -1,6 +1,6 @@
 {
     "name": "jv-conseil/dkim-php-mail-signature",
-    "description": "Sign your e-mails with DKIM and Domain Keys in PHP.",
+    "description": "Stand-alone DKIM class to sign your emails with a 2048 bit private key hashed with SHA-256 algorithm",
     "keywords": ["dkim", "dkim-signature", "mail", "composer"],
     "type": "library",
     "homepage": "http://www.jv-conseil.net",
