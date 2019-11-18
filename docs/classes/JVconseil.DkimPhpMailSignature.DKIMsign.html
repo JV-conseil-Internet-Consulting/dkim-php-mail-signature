@@ -144,28 +144,28 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-664873692"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-421481621"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-664873692" class="accordion-body collapse in">
+            <div id="namespace-421481621" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1427623146"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2110692394"></a>
                                 <a href="../namespaces/JVconseil.html" style="margin-left: 30px; padding-left: 0">JVconseil</a>
             </div>
-            <div id="namespace-1427623146" class="accordion-body collapse ">
+            <div id="namespace-2110692394" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-534344967"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1889685156"></a>
                                 <a href="../namespaces/JVconseil.DkimPhpMailSignature.html" style="margin-left: 30px; padding-left: 0">DkimPhpMailSignature</a>
             </div>
-            <div id="namespace-534344967" class="accordion-body collapse ">
+            <div id="namespace-1889685156" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -236,9 +236,201 @@ mail($to, $subject, $message, $signed_headers.$headers) ;</code></pre>
                     
                                                                         <h3>Examples</h3>
                                                                             <h4>Simple example with config file accessed through a var:</h4>
-                            <pre class="pre-scrollable">** File not found : /../examples/SignSimple.php **</pre>
+                            <pre class="pre-scrollable">&lt;?php
+/**
+ * Simple example test with config file accessed through a var.
+ * 
+ * To test this example enter in Terminal this command line:
+ * ```
+ * php ~/dkim-php-mail-signature/examples/SignSimple.php
+ * ``` 
+ * 
+ * @author JV conseil — Internet Consulting &lt;contact@jv-conseil.net&gt;
+ * @see http://www.jv-conseil.net
+ * @see https://github.com/JV-conseil-Internet-Consulting/dkim-php-mail-signature
+ * @see https://packagist.org/packages/jv-conseil/dkim-php-mail-signature
+ * @license BSD 3-Clause License, Copyright (c) 2019, JV conseil – Internet Consulting, All rights reserved.
+ * @version v1.2.1
+ */
+
+
+/** Call Composer Package JVconseil\DkimPhpMailSignature */
+require_once __DIR__ . &#039;/../vendor/autoload.php&#039; ; // Autoload files using Composer autoload
+
+use JVconseil\DkimPhpMailSignature\DKIMsign ;
+
+/** @var string $config after setting up the config file and your DNS records :*/
+$config = include_once(__DIR__ . &#039;/../config/config.sample.inc.php&#039;) ;
+
+
+// YOUR E-MAIL
+$to = &#039;recipient@&#039; . $config[&#039;domain&#039;] ;
+
+$subject = &#039;DKIM e-mail test for domain &#039; . $config[&#039;domain&#039;] ;
+
+$headers =
+&#039;MIME-Version: 1.0
+From: &quot;Sender&quot; &lt;sender@&#039; . $config[&#039;domain&#039;] . &#039;&gt;
+Content-type: text/html; charset=utf8&#039;;
+
+$message =
+&#039;&lt;html&gt;
+	&lt;header&gt;&lt;/header&gt;
+	&lt;body&gt;
+		Hello, this a DKIM e-mail test
+	&lt;/body&gt;
+&lt;/html&gt;&#039;;
+	
+
+// Make sure linefeeds are in CRLF format - it is essential for signing
+$message = preg_replace(&#039;/(?&lt;!\r)\n/&#039;, &quot;\r\n&quot;, $message) ;
+$headers = preg_replace(&#039;/(?&lt;!\r)\n/&#039;, &quot;\r\n&quot;, $headers) ;
+
+
+// 1) YOU USUALLY DID :
+// mail($to, $subject, $message, $headers);
+
+
+// 2) NOW YOU WILL DO (you can use options to add some flavor) :
+
+$options = array(
+	&#039;use_dkim&#039; =&gt; false,
+	&#039;use_domainKeys&#039; =&gt; true,
+	&#039;identity&#039; =&gt; $config[&#039;identity&#039;],
+	// if you prefer simple canonicalization (though the default &quot;relaxed&quot;
+	// is recommended)
+	&#039;dkim_body_canonicalization&#039; =&gt; &#039;simple&#039;,
+	&#039;dk_canonicalization&#039; =&gt; &#039;nofws&#039;,
+	// if you want to sign the mail on a different list of headers than the
+	// default one (see class constructor). Case-insensitive.
+	&#039;signed_headers&#039; =&gt; array(
+		&#039;message-Id&#039;,
+		&#039;Content-type&#039;,
+		&#039;To&#039;,
+		&#039;subject&#039;
+	)
+);
+
+$signature = new DKIMsign(
+	// $options,
+	$config[&#039;private_key&#039;],
+	$config[&#039;passphrase&#039;],
+	$config[&#039;domain&#039;],
+	$config[&#039;selector&#039;]
+);
+
+$signed_headers = $signature -&gt; get_signed_headers($to, $subject, $message, $headers) ;
+
+try {
+	if (mail($to, $subject, $message, $signed_headers.$headers) == true) {
+		// header(&#039;Content-Type: text/plain&#039;) ;
+		header(&#039;Content-Type: text/plain&#039;) ;
+		echo $signed_headers . $headers . &quot;\r\n&quot; ;
+		echo &#039;To: &#039; . $to . &quot;\r\n&quot; ;
+		echo &#039;Subject: &#039; . $subject . &quot;\r\n&quot; ;
+		echo $message . &quot;\r\n&quot; ;
+	}
+} catch (Exception $e) {
+    die(&#039;Caught exception: &#039; . $e-&gt;getMessage() . &quot;\r\n&quot;) ;
+}</pre>
                                                     <h4>Class example with config file accessed through a class:</h4>
-                            <pre class="pre-scrollable">** File not found : /../examples/SignWithConfigClass.php **</pre>
+                            <pre class="pre-scrollable">&lt;?php
+/**
+ * Class example with config file accessed through a class.
+ * 
+ * To test this example enter in Terminal this command line:
+ * ```
+ * php ~/dkim-php-mail-signature/examples/SignWithConfigClass.php
+ * ``` 
+ * 
+ * @author JV conseil — Internet Consulting &lt;contact@jv-conseil.net&gt;
+ * @see http://www.jv-conseil.net
+ * @see https://github.com/JV-conseil-Internet-Consulting/dkim-php-mail-signature
+ * @see https://packagist.org/packages/jv-conseil/dkim-php-mail-signature
+ * @license BSD 3-Clause License, Copyright (c) 2019, JV conseil – Internet Consulting, All rights reserved.
+ * @version v1.2.1
+ */
+
+
+ /** Call Composer Package JVconseil\DkimPhpMailSignature */
+require_once __DIR__ . &#039;/../vendor/autoload.php&#039; ; // Autoload files using Composer autoload
+
+use JVconseil\DkimPhpMailSignature\DKIMsign ;
+use JVconseil\DkimPhpMailSignature\DKIMconfig ;
+
+
+/** @var string $config after setting up the config file and your DNS records :*/
+$config = new DKIMconfig(__DIR__ . &#039;/../config/config.sample.inc.php&#039;) ;
+
+// YOUR E-MAIL
+$to = &#039;recipient@&#039; . $config-&gt;domain ;
+
+$subject = &#039;DKIM e-mail test for domain &#039; . $config-&gt;domain ;
+
+$headers =
+&#039;MIME-Version: 1.0
+From: &quot;Sender&quot; &lt;sender@&#039; . $config-&gt;domain . &#039;&gt;
+Content-type: text/html; charset=utf8&#039; ;
+
+$message =
+&#039;&lt;html&gt;
+	&lt;header&gt;&lt;/header&gt;
+	&lt;body&gt;
+		Hello, this a DKIM e-mail test
+	&lt;/body&gt;
+&lt;/html&gt;&#039;;
+	
+
+// Make sure linefeeds are in CRLF format - it is essential for signing
+$message = preg_replace(&#039;/(?&lt;!\r)\n/&#039;, &quot;\r\n&quot;, $message) ;
+$headers = preg_replace(&#039;/(?&lt;!\r)\n/&#039;, &quot;\r\n&quot;, $headers) ;
+
+
+// 1) YOU USUALLY DID :
+// mail($to, $subject, $message, $headers);
+
+
+// 2) NOW YOU WILL DO (you can use options to add some flavor) :
+
+$options = array(
+	&#039;use_dkim&#039; =&gt; false,
+	&#039;use_domainKeys&#039; =&gt; true,
+	&#039;identity&#039; =&gt; $config-&gt;identity,
+	// if you prefer simple canonicalization (though the default &quot;relaxed&quot;
+	// is recommended)
+	&#039;dkim_body_canonicalization&#039; =&gt; &#039;simple&#039;,
+	&#039;dk_canonicalization&#039; =&gt; &#039;nofws&#039;,
+	// if you want to sign the mail on a different list of headers than the
+	// default one (see class constructor). Case-insensitive.
+	&#039;signed_headers&#039; =&gt; array(
+		&#039;message-Id&#039;,
+		&#039;Content-type&#039;,
+		&#039;To&#039;,
+		&#039;subject&#039;
+	)
+);
+
+$sign = new DKIMsign(
+	$config-&gt;private_key,
+	$config-&gt;passphrase,
+	$config-&gt;domain,
+	$config-&gt;selector
+	// $options
+);
+
+$signed_headers = $sign-&gt;get_signed_headers($to, $subject, $message, $headers) ;
+
+try {
+	if (mail($to, $subject, $message, $signed_headers.$headers) == true) {
+		// header(&#039;Content-Type: text/plain&#039;) ;
+		echo $signed_headers . $headers . &quot;\r\n&quot; ;
+		echo &#039;To: &#039; . $to . &quot;\r\n&quot; ;
+		echo &#039;Subject: &#039; . $subject . &quot;\r\n&quot; ;
+		echo $message . &quot;\r\n&quot; ;
+	}
+} catch (Exception $e) {
+    die(&#039;Caught exception: &#039; . $e-&gt;getMessage() . &quot;\r\n&quot;) ;
+}</pre>
                                                                 
                     <section id="summary">
                         <h2>Summary</h2>
@@ -342,7 +534,7 @@ mail($to, $subject, $message, $signed_headers.$headers) ;</code></pre>
                                 version
                             </th>
                             <td>
-                                                                    <p>v1.2.0</p>
+                                                                    <p>v1.2.1</p>
                                                             </td>
                         </tr>
                                         </table>
@@ -898,7 +1090,7 @@ are in the CRLF (\r\n) format !! Otherwise signature may fail with some MTAs</em
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on November 18th, 2019 at 22:17.
+                    on November 18th, 2019 at 22:27.
                 </section>
             </section>
         </section>

@@ -144,28 +144,28 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1991934670"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-358269746"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-1991934670" class="accordion-body collapse in">
+            <div id="namespace-358269746" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1760956944"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1346973078"></a>
                                 <a href="../namespaces/JVconseil.html" style="margin-left: 30px; padding-left: 0">JVconseil</a>
             </div>
-            <div id="namespace-1760956944" class="accordion-body collapse ">
+            <div id="namespace-1346973078" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1016913737"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1964802217"></a>
                                 <a href="../namespaces/JVconseil.DkimPhpMailSignature.html" style="margin-left: 30px; padding-left: 0">DkimPhpMailSignature</a>
             </div>
-            <div id="namespace-1016913737" class="accordion-body collapse ">
+            <div id="namespace-1964802217" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -262,7 +262,70 @@ $config-&gt;domain ; // =&gt; "mynewdomain.name" ;</code></pre>
                     
                                                                         <h3>Examples</h3>
                                                                             <h4>Here is config.sample.inc.php:</h4>
-                            <pre class="pre-scrollable">** File not found : /../config/config.sample.inc.php **</pre>
+                            <pre class="pre-scrollable">&lt;?php
+/** 
+ * The File to store your Configuration paramaters.
+ * 
+ * Before starting you should make a copy of folder `config/` and store it outside your `vendor/` Composer repository in a non-public area of your website e.g.: 
+ * 
+ * ```
+ * ~/mywebsite/includes/config/
+ * ```
+ * 
+ * Failing to do so will expose you to lose all your settings in case of a future Composer udpate.
+ * 
+ * ## Generate your Public &amp; Private Encryption keys
+ * 
+ * In Terminal enter this command line to start working under the path of your `config/` folder:
+ * ```
+ * cd ~/mywebsite/includes/config/
+ * ```
+ * 
+ * In Terminal enter this command line to generate a new **private 2048 bit encryption key**:
+ * ```
+ * openssl genrsa -des3 -out private.pem 2048
+ * ```
+ * 
+ * Enter your **Pass Phrase*and save it for editing your `config.inc.php` file in the next step.
+ * 
+ * Then retrieve your **public key**:
+ * ```
+ * openssl rsa -in private.pem -out public.pem -outform PEM -pubout
+ * ```
+ * 
+ * _You can delete the two originals `*.pem` file keys stored in the `config/` folder if they create a conflict in the creation process of your keys._
+ * 
+ * 
+ * # Sponsorship
+ * 
+ * If this project helps you reduce time to develop, you can give me a cup of coffee ☕️ :-)
+ * 
+ * [![Donate with PayPal](https://www.paypalobjects.com/en_US/FR/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=P3DGL6EANDY96&amp;source=url)
+ * 
+ * @var string domain: domain name e.g.: google.com.
+ * @var string selector: selector used in your DKIM DNS record, e.g.: selector._domainkey.MAIL_DKIM_DOMAIN
+ * @var string passphrase: your pass phrase used to generate your keys e.g.: myPassPhrase.
+ * @var string private_key: string retrieved from private.pem file. 
+ * @var string public_key: string retrieved from public.pem file.
+ * @var string identity: Allowed user, defaults is &quot;@&lt;MAIL_DKIM_DOMAIN&gt;&quot;, meaning anybody in the MAIL_DKIM_DOMAIN domain. Ex: &#039;admin@mydomain.tld&#039;. You&#039;ll never have to use this unless you do not control the &quot;From&quot; value in the e-mails you send. 
+ * 
+ * @return array an array of configuration paramaters.
+ * 
+ * @author JV conseil — Internet Consulting &lt;contact@jv-conseil.net&gt;
+ * @see http://www.jv-conseil.net
+ * @see https://github.com/JV-conseil-Internet-Consulting/dkim-php-mail-signature
+ * @see https://packagist.org/packages/jv-conseil/dkim-php-mail-signature
+ * @license BSD 3-Clause License, Copyright (c) 2019, JV conseil – Internet Consulting, All rights reserved.
+ * @version v1.2.1
+ */
+return array(
+    &#039;domain&#039;        =&gt;  &#039;example.com&#039;,
+    &#039;selector&#039;      =&gt;  &#039;selector&#039;,
+    &#039;passphrase&#039;    =&gt;  &#039;myPassPhrase&#039;,
+    &#039;private_key&#039;   =&gt;  file_get_contents(&#039;private.pem&#039;, true) ,
+    &#039;public_key&#039;    =&gt;  file_get_contents(&#039;public.pem&#039;, true) ,
+    &#039;identity&#039;      =&gt;  NULL,
+) ;</pre>
                                                                 
                     <section id="summary">
                         <h2>Summary</h2>
@@ -367,7 +430,7 @@ $config-&gt;domain ; // =&gt; "mynewdomain.name" ;</code></pre>
                                 version
                             </th>
                             <td>
-                                                                    <p>v1.2.0</p>
+                                                                    <p>v1.2.1</p>
                                                             </td>
                         </tr>
                                         </table>
@@ -641,7 +704,7 @@ $config-&gt;domain ; // =&gt; "mynewdomain.name" ;</code></pre>
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on November 18th, 2019 at 22:17.
+                    on November 18th, 2019 at 22:27.
                 </section>
             </section>
         </section>
