@@ -7,6 +7,7 @@
 > 📬 Stand-alone DKIM class to sign your emails with a 2048 bit private key hashed with SHA-256 algorithm.
 
 ![DKIM](https://www.dmarcanalyzer.com/app/uploads/2017/04/what-is-DKIM-domainkeysidentifiedmail-1.png)
+![Composer](https://getcomposer.org/img/logo-composer-transparent2.png)
 
 # Usage
 
