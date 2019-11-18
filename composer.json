@@ -15,7 +15,7 @@
     ],
     "minimum-stability": "dev",
     "require": {
-		"php": ">=7.1"
+		"php": ">=5.6.37"
     },
     "require-dev": {
         "phpdocumentor/phpdocumentor": "2.*"
