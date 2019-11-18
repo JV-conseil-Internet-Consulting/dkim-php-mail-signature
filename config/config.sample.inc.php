@@ -16,11 +16,13 @@
  * @var string public_key: string retrieved from public.pem file.
  * @var string identity: Allowed user, defaults is "@<MAIL_DKIM_DOMAIN>", meaning anybody in the MAIL_DKIM_DOMAIN domain. Ex: 'admin@mydomain.tld'. You'll never have to use this unless you do not control the "From" value in the e-mails you send. 
  * 
- * @return string an array of configuration paramaters.
+ * @return array an array of configuration paramaters.
  * 
  * @author JV conseil — Internet Consulting <contact@jv-conseil.net>
  * @see http://www.jv-conseil.net
- * @license BSD-3-Clause
+ * @see https://github.com/JV-conseil-Internet-Consulting/dkim-php-mail-signature
+ * @see https://packagist.org/packages/jv-conseil/dkim-php-mail-signature
+ * @license BSD 3-Clause License, Copyright (c) 2019, JV conseil – Internet Consulting, All rights reserved.
  * @version v1.0.4
  */
 return array(
