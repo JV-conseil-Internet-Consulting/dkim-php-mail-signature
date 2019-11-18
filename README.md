@@ -4,9 +4,11 @@
 [![License BSD 3-Clause](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](LICENSE)
 [![Follow JV conseil – Internet Consulting on Twitter](https://img.shields.io/twitter/follow/JVconseil.svg?style=social&logo=twitter)](https://twitter.com/JVconseil)
 
-> Stand-alone DKIM class to sign email with a 2048 bit private key hashed with SHA-256 algorithm.
+> 📬 Stand-alone DKIM class to sign your emails with a 2048 bit private key hashed with SHA-256 algorithm.
 
-## Usage
+![DKIM](https://www.dmarcanalyzer.com/app/uploads/2017/04/what-is-DKIM-domainkeysidentifiedmail-1.png)
+
+# Usage
 
 Sample lines to import into your mail code to start signing with DKIM:
 ```
