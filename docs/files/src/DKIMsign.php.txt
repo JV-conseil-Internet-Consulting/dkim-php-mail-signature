@@ -120,8 +120,8 @@ namespace JVconseil\DkimPhpMailSignature;
  * php ~/dkim-php-mail-signature/examples/Simple.php
  * ```
  * 
- * @example examples/Simple.php Simple example with config file accessed through a var:
- * @example examples/ClassMethod.php Class example with config file accessed through a class:
+ * @example ./examples/Simple.php Simple example with config file accessed through a var:
+ * @example ./examples/ClassMethod.php Class example with config file accessed through a class:
  * 
  * @author JV conseil — Internet Consulting <contact@jv-conseil.net>
  * @see http://www.jv-conseil.net

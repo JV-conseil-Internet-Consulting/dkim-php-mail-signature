@@ -144,28 +144,28 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1745598927"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-2057243375"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-1745598927" class="accordion-body collapse in">
+            <div id="namespace-2057243375" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-965947083"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1101327479"></a>
                                 <a href="../namespaces/JVconseil.html" style="margin-left: 30px; padding-left: 0">JVconseil</a>
             </div>
-            <div id="namespace-965947083" class="accordion-body collapse ">
+            <div id="namespace-1101327479" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1215631512"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1423369721"></a>
                                 <a href="../namespaces/JVconseil.DkimPhpMailSignature.html" style="margin-left: 30px; padding-left: 0">DkimPhpMailSignature</a>
             </div>
-            <div id="namespace-1215631512" class="accordion-body collapse ">
+            <div id="namespace-1423369721" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -258,7 +258,39 @@ $config-&gt;domain ; // =&gt; "mynewdomain.name" ;</code></pre>
                     
                                                                         <h3>Examples</h3>
                                                                             <h4>Here is config.sample.inc.php:</h4>
-                            <pre class="pre-scrollable">** File not found : config/config.sample.inc.php **</pre>
+                            <pre class="pre-scrollable">&lt;?php
+/** 
+ * The File to store your Configuration paramaters.
+ * 
+ * Before starting you should make a copy of folder `config/` and store it outside your `vendor/` Composer repository in a non-public area of your website e.g.: 
+ * ```
+ * ~/mywebsite/includes/config/
+ * ```
+ * 
+ * Failing to do so will expose you to lose all your settings in case of a future Composer udpate.
+ * 
+ * @var string domain: domain name e.g.: google.com.
+ * @var string selector: selector used in your DKIM DNS record, e.g.: selector._domainkey.MAIL_DKIM_DOMAIN
+ * @var string passphrase: your pass phrase used to generate your keys e.g.: myPassPhrase.
+ * @var string private_key: string retrieved from private.pem file. 
+ * @var string public_key: string retrieved from public.pem file.
+ * @var string identity: Allowed user, defaults is &quot;@&lt;MAIL_DKIM_DOMAIN&gt;&quot;, meaning anybody in the MAIL_DKIM_DOMAIN domain. Ex: &#039;admin@mydomain.tld&#039;. You&#039;ll never have to use this unless you do not control the &quot;From&quot; value in the e-mails you send. 
+ * 
+ * @return string an array of configuration paramaters.
+ * 
+ * @author JV conseil — Internet Consulting &lt;contact@jv-conseil.net&gt;
+ * @see http://www.jv-conseil.net
+ * @license BSD-3-Clause
+ * @version v1.0.4
+ */
+return array(
+    &#039;domain&#039;        =&gt;  &#039;example.com&#039;,
+    &#039;selector&#039;      =&gt;  &#039;selector&#039;,
+    &#039;passphrase&#039;    =&gt;  &#039;myPassPhrase&#039;,
+    &#039;private_key&#039;   =&gt;  file_get_contents(&#039;private.pem&#039;, true) ,
+    &#039;public_key&#039;    =&gt;  file_get_contents(&#039;public.pem&#039;, true) ,
+    &#039;identity&#039;      =&gt;  NULL,
+) ;</pre>
                                                                 
                     <section id="summary">
                         <h2>Summary</h2>
@@ -619,7 +651,7 @@ $config-&gt;domain ; // =&gt; "mynewdomain.name" ;</code></pre>
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on November 17th, 2019 at 23:29.
+                    on November 18th, 2019 at 00:10.
                 </section>
             </section>
         </section>
