@@ -31,6 +31,6 @@
         "wiki": "https://github.com/JV-conseil-Internet-Consulting/dkim-php-mail-signature/wiki"
     },
     "scripts": {
-        "test": "php examples/ClassMethod.php"
+        "test": "php examples/SignWithConfigClass.php"
     }
 }

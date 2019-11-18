@@ -84,7 +84,7 @@
  * @see https://github.com/JV-conseil-Internet-Consulting/dkim-php-mail-signature
  * @see https://packagist.org/packages/jv-conseil/dkim-php-mail-signature
  * @license BSD 3-Clause License, Copyright (c) 2019, JV conseil – Internet Consulting, All rights reserved.
- * @version v1.0.4
+ * @version v1.2.0
  */
 
 namespace JVconseil\DkimPhpMailSignature;
@@ -119,16 +119,22 @@ namespace JVconseil\DkimPhpMailSignature;
  * 
  * In Terminal enter this command line to start testing examples:
  * ```
- * php ~/dkim-php-mail-signature/examples/Simple.php
+ * php ~/dkim-php-mail-signature/examples/SignSimple.php
  * ```
  * 
- * @example /../examples/Simple.php Simple example with config file accessed through a var:
- * @example /../examples/ClassMethod.php Class example with config file accessed through a class:
+ * ### Sponsorship
+ * 
+ * If this project helps you reduce time to develop, you can give me a cup of coffee ☕️ :-)
+ * 
+ * [![Donate with PayPal](https://www.paypalobjects.com/en_US/FR/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=P3DGL6EANDY96&source=url) 
+ * 
+ * @example /../examples/SignSimple.php Simple example with config file accessed through a var:
+ * @example /../examples/SignWithConfigClass.php Class example with config file accessed through a class:
  * 
  * @author JV conseil — Internet Consulting <contact@jv-conseil.net>
  * @see http://www.jv-conseil.net
  * @license BSD 3-Clause License, Copyright (c) 2019, JV conseil – Internet Consulting, All rights reserved.
- * @version v1.0.4
+ * @version v1.2.0
  */
 class DKIMsign {
 

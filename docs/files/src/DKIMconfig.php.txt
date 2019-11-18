@@ -5,7 +5,7 @@
  * @author JV conseil — Internet Consulting <contact@jv-conseil.net>
  * @see http://www.jv-conseil.net
  * @license BSD 3-Clause License, Copyright (c) 2019, JV conseil – Internet Consulting, All rights reserved.
- * @version v1.0.4
+ * @version v1.2.0
  */
 
 namespace JVconseil\DkimPhpMailSignature;
@@ -88,6 +88,12 @@ namespace JVconseil\DkimPhpMailSignature;
  * // get: this calls __get()
  * $config->domain ; // => "mynewdomain.name" ;
  * ```
+ * 
+ * ### Sponsorship
+ * 
+ * If this project helps you reduce time to develop, you can give me a cup of coffee ☕️ :-)
+ * 
+ * [![Donate with PayPal](https://www.paypalobjects.com/en_US/FR/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=P3DGL6EANDY96&source=url) 
  *  
  * @example /../config/config.sample.inc.php Here is config.sample.inc.php: 
  * 
@@ -98,28 +104,28 @@ namespace JVconseil\DkimPhpMailSignature;
  * @see https://github.com/JV-conseil-Internet-Consulting/dkim-php-mail-signature
  * @see https://packagist.org/packages/jv-conseil/dkim-php-mail-signature
  * @license BSD 3-Clause License, Copyright (c) 2019, JV conseil – Internet Consulting, All rights reserved.
- * @version v1.0.4
+ * @version v1.2.0
  */
 class DKIMconfig {
 
     /** @var string $_config_file store the path to your <config/config.inc.php> file */
-    protected $_config_file ;
+    protected $_config_file = null ;
 
     /** @return array an array of configuration paramaters stored in $_config_file */
-    private function _include_config_file() {
-        if (!$this->_config_file) $this->_config_file = __DIR__ . '/../config/config.sample.inc.php' ;
-        if (file_exists($this->_config_file))
-            return include_once($this->_config_file) ;
+    private function _include_config_file($_config_file = null) {
+        if (!$_config_file) $_config_file = __DIR__ . '/../config/config.sample.inc.php' ;
+        if (file_exists($_config_file))
+            return include_once($_config_file) ;
         else
-            throw new \RuntimeException('Config File is Missing!') ;
+            die('Config file does not exists: ' . $_config_file) ;
     }
     
     /** @var array $_data populated by an array of items stored in $_config_file */
     private $_data ;
 
     /** @return object populated items to DKIMconfig class */
-    public function __construct() {
-        $this->_data = $this->_include_config_file() ;
+    public function __construct($_config_file) {
+        $this->_data = $this->_include_config_file($_config_file) ;
     }
 
     /** @return string magic methods! */

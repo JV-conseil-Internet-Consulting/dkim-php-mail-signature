@@ -114,12 +114,12 @@
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="../reports/errors.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">30</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">55</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="../reports/markers.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
                                 </a>
                             </li>
                             <li>
@@ -144,33 +144,34 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1449550986"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-363636988"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-1449550986" class="accordion-body collapse in">
+            <div id="namespace-363636988" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-384659216"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1038574513"></a>
                                 <a href="../namespaces/JVconseil.html" style="margin-left: 30px; padding-left: 0">JVconseil</a>
             </div>
-            <div id="namespace-384659216" class="accordion-body collapse ">
+            <div id="namespace-1038574513" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1438210085"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2027667484"></a>
                                 <a href="../namespaces/JVconseil.DkimPhpMailSignature.html" style="margin-left: 30px; padding-left: 0">DkimPhpMailSignature</a>
             </div>
-            <div id="namespace-1438210085" class="accordion-body collapse ">
+            <div id="namespace-2027667484" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
                     <ul>
                                                                                                     <li class="class"><a href="../classes/JVconseil.DkimPhpMailSignature.DKIMconfig.html">DKIMconfig</a></li>
+                                                    <li class="class"><a href="../classes/JVconseil.DkimPhpMailSignature.DKIMmail.html">DKIMmail</a></li>
                                                     <li class="class"><a href="../classes/JVconseil.DkimPhpMailSignature.DKIMsign.html">DKIMsign</a></li>
                                             </ul>
                 </div>
@@ -204,11 +205,10 @@
                                                                     </nav>
 
                     <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
-                    <h1><small>config</small>config.sample.inc.php</h1>
-                    <p><em>The File to store your Configuration paramaters.</em></p>
-                    <p>Before starting you should make a copy of folder <code>config/</code> and store it outside your <code>vendor/</code> Composer repository in a non-public area of your website e.g.:</p>
-<pre><code>~/mywebsite/includes/config/</code></pre>
-<p>Failing to do so will expose you to lose all your settings in case of a future Composer udpate.</p>
+                    <h1><small>examples</small>SignSimple.php</h1>
+                    <p><em>Simple example test with config file accessed through a var.</em></p>
+                    <p>To test this example enter in Terminal this command line:</p>
+<pre><code>php ~/dkim-php-mail-signature/examples/SignSimple.php</code></pre>
 
                     
                     
@@ -227,27 +227,6 @@
                     </dl>
                     <h2>Tags</h2>
                     <table class="table table-condensed">
-                                                    <tr>
-                                <th>
-                                    var
-                                </th>
-                                <td>
-                                                                            <p>domain: domain name e.g.: google.com.</p>
-                                                                            <p>selector: selector used in your DKIM DNS record, e.g.: selector._domainkey.MAIL_DKIM_DOMAIN</p>
-                                                                            <p>passphrase: your pass phrase used to generate your keys e.g.: myPassPhrase.</p>
-                                                                            <p>private_key: string retrieved from private.pem file.</p>
-                                                                            <p>public_key: string retrieved from public.pem file.</p>
-                                                                            <p>identity: Allowed user, defaults is &quot;@<MAIL_DKIM_DOMAIN>&quot;, meaning anybody in the MAIL_DKIM_DOMAIN domain. Ex: 'admin@mydomain.tld'. You'll never have to use this unless you do not control the &quot;From&quot; value in the e-mails you send.</p>
-                                                                    </td>
-                            </tr>
-                                                    <tr>
-                                <th>
-                                    return
-                                </th>
-                                <td>
-                                                                            <p>an array of configuration paramaters.</p>
-                                                                    </td>
-                            </tr>
                                                     <tr>
                                 <th>
                                     author
@@ -269,7 +248,7 @@
                                     version
                                 </th>
                                 <td>
-                                                                            <p>v1.0.4</p>
+                                                                            <p>v1.2.0</p>
                                                                     </td>
                             </tr>
                                             </table>
@@ -288,7 +267,7 @@
             <h3 id="source-view-label"></h3>
         </div>
         <div class="modal-body">
-            <pre data-src="../files/config/config.sample.inc.php.txt" class="language-php line-numbers"></pre>
+            <pre data-src="../files/examples/SignSimple.php.txt" class="language-php line-numbers"></pre>
         </div>
     </div>
 
@@ -329,7 +308,7 @@
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on November 18th, 2019 at 00:49.
+                    on November 18th, 2019 at 18:51.
                 </section>
             </section>
         </section>

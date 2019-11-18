@@ -144,28 +144,28 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-430667060"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1614007885"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-430667060" class="accordion-body collapse in">
+            <div id="namespace-1614007885" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1417403790"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1797637958"></a>
                                 <a href="../namespaces/JVconseil.html" style="margin-left: 30px; padding-left: 0">JVconseil</a>
             </div>
-            <div id="namespace-1417403790" class="accordion-body collapse ">
+            <div id="namespace-1797637958" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-750091458"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1050636815"></a>
                                 <a href="../namespaces/JVconseil.DkimPhpMailSignature.html" style="margin-left: 30px; padding-left: 0">DkimPhpMailSignature</a>
             </div>
-            <div id="namespace-750091458" class="accordion-body collapse ">
+            <div id="namespace-1050636815" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -206,141 +206,35 @@
                                             </nav>
                     <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
 
-                    <h1><small>\JVconseil\DkimPhpMailSignature</small>DKIMsign</h1>
-                    <p><em>Stand-alone DKIM class to sign email with a 2048 bit private key hashed with SHA-256 algorithm.</em></p>
+                    <h1><small>\JVconseil\DkimPhpMailSignature</small>DKIMmail</h1>
+                    <p><em>DKIMmail class</em></p>
                     <h3>Usage</h3>
-<p>Sample lines to import into your mail code to start signing with DKIM:</p>
-<pre><code>require_once __DIR__ . '/../vendor/autoload.php' ; // Autoload files using Composer autoload
-use JVconseil\DkimPhpMailSignature\DKIMsign ;
-use JVconseil\DkimPhpMailSignature\DKIMconfig ;
+<pre><code>// instanciation de la classe
+$mail = new DKIMmail();
 
-// init
-$config = new DKIMconfig('~/mywebsite/includes/config/config.inc.php') ;
-$sign = new DKIMsign(
-$config-&gt;private_key,
-$config-&gt;passphrase,
-$config-&gt;domain,
-$config-&gt;selector) ;
+// parametres
+$mail-&gt;to = "adresse@email";                // Adresse email de reception
+$mail-&gt;subject = "Test";                    // Sujet
+$mail-&gt;body = "Ceci est un test.";          // Corps du message
+$mail-&gt;from = "adresse@email";              // Adresse email de l'expediteur (optionnel)
+$mail-&gt;headers = "Date: ";  // Entetes supplementaires (optionnel)
+$mail-&gt;attach("$fichier", "test.jpg");      // fichier attache (optionnel)
 
-// sign
-$signed_headers = $sign-&gt;get_signed_headers($to, $subject, $message, $headers) ;
-
-// send email
-mail($to, $subject, $message, $signed_headers.$headers) ;</code></pre>
-<h3>Test Examples in Terminal</h3>
-<p>In Terminal enter this command line to start testing examples:</p>
-<pre><code>php ~/dkim-php-mail-signature/examples/SignSimple.php</code></pre>
+// envoi du message
+$mail-&gt;send() ;</code></pre>
 <h3>Sponsorship</h3>
 <p>If this project helps you reduce time to develop, you can give me a cup of coffee ☕️ :-)</p>
 <p><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=P3DGL6EANDY96&amp;source=url"><img src="https://www.paypalobjects.com/en_US/FR/i/btn/btn_donateCC_LG.gif" alt="Donate with PayPal" /></a></p>
                     
                                                                         <h3>Examples</h3>
-                                                                            <h4>Simple example with config file accessed through a var:</h4>
-                            <pre class="pre-scrollable">&lt;?php
-/**
- * Simple example test with config file accessed through a var.
- * 
- * To test this example enter in Terminal this command line:
- * ```
- * php ~/dkim-php-mail-signature/examples/SignSimple.php
- * ``` 
- * 
- * @author JV conseil — Internet Consulting &lt;contact@jv-conseil.net&gt;
- * @see http://www.jv-conseil.net
- * @see https://github.com/JV-conseil-Internet-Consulting/dkim-php-mail-signature
- * @see https://packagist.org/packages/jv-conseil/dkim-php-mail-signature
- * @license BSD 3-Clause License, Copyright (c) 2019, JV conseil – Internet Consulting, All rights reserved.
- * @version v1.2.0
- */
-
-
-/** Call Composer Package JVconseil\DkimPhpMailSignature */
-require_once __DIR__ . &#039;/../vendor/autoload.php&#039; ; // Autoload files using Composer autoload
-
-use JVconseil\DkimPhpMailSignature\DKIMsign ;
-
-/** @var string $config after setting up the config file and your DNS records :*/
-$config = include_once(__DIR__ . &#039;/../config/config.sample.inc.php&#039;) ;
-
-
-// YOUR E-MAIL
-$to = &#039;recipient@&#039; . $config[&#039;domain&#039;] ;
-
-$subject = &#039;DKIM e-mail test for domain &#039; . $config[&#039;domain&#039;] ;
-
-$headers =
-&#039;MIME-Version: 1.0
-From: &quot;Sender&quot; &lt;sender@&#039; . $config[&#039;domain&#039;] . &#039;&gt;
-Content-type: text/html; charset=utf8&#039;;
-
-$message =
-&#039;&lt;html&gt;
-	&lt;header&gt;&lt;/header&gt;
-	&lt;body&gt;
-		Hello, this a DKIM e-mail test
-	&lt;/body&gt;
-&lt;/html&gt;&#039;;
-	
-
-// Make sure linefeeds are in CRLF format - it is essential for signing
-$message = preg_replace(&#039;/(?&lt;!\r)\n/&#039;, &quot;\r\n&quot;, $message) ;
-$headers = preg_replace(&#039;/(?&lt;!\r)\n/&#039;, &quot;\r\n&quot;, $headers) ;
-
-
-// 1) YOU USUALLY DID :
-// mail($to, $subject, $message, $headers);
-
-
-// 2) NOW YOU WILL DO (you can use options to add some flavor) :
-
-$options = array(
-	&#039;use_dkim&#039; =&gt; false,
-	&#039;use_domainKeys&#039; =&gt; true,
-	&#039;identity&#039; =&gt; $config[&#039;identity&#039;],
-	// if you prefer simple canonicalization (though the default &quot;relaxed&quot;
-	// is recommended)
-	&#039;dkim_body_canonicalization&#039; =&gt; &#039;simple&#039;,
-	&#039;dk_canonicalization&#039; =&gt; &#039;nofws&#039;,
-	// if you want to sign the mail on a different list of headers than the
-	// default one (see class constructor). Case-insensitive.
-	&#039;signed_headers&#039; =&gt; array(
-		&#039;message-Id&#039;,
-		&#039;Content-type&#039;,
-		&#039;To&#039;,
-		&#039;subject&#039;
-	)
-);
-
-$signature = new DKIMsign(
-	// $options,
-	$config[&#039;private_key&#039;],
-	$config[&#039;passphrase&#039;],
-	$config[&#039;domain&#039;],
-	$config[&#039;selector&#039;]
-);
-
-$signed_headers = $signature -&gt; get_signed_headers($to, $subject, $message, $headers) ;
-
-try {
-	if (mail($to, $subject, $message, $signed_headers.$headers) == true) {
-		// header(&#039;Content-Type: text/plain&#039;) ;
-		header(&#039;Content-Type: text/plain&#039;) ;
-		echo $signed_headers . $headers . &quot;\r\n&quot; ;
-		echo &#039;To: &#039; . $to . &quot;\r\n&quot; ;
-		echo &#039;Subject: &#039; . $subject . &quot;\r\n&quot; ;
-		echo $message . &quot;\r\n&quot; ;
-	}
-} catch (Exception $e) {
-    die(&#039;Caught exception: &#039; . $e-&gt;getMessage() . &quot;\r\n&quot;) ;
-}</pre>
-                                                    <h4>Class example with config file accessed through a class:</h4>
+                                                                            <h4>Send DKIM sign emails:</h4>
                             <pre class="pre-scrollable">&lt;?php
 /**
  * Class example with config file accessed through a class.
  * 
  * To test this example enter in Terminal this command line:
  * ```
- * php ~/dkim-php-mail-signature/examples/SignWithConfigClass.php
+ * php ~/dkim-php-mail-signature/examples/ClassMethod.php
  * ``` 
  * 
  * @author JV conseil — Internet Consulting &lt;contact@jv-conseil.net&gt;
@@ -355,78 +249,34 @@ try {
  /** Call Composer Package JVconseil\DkimPhpMailSignature */
 require_once __DIR__ . &#039;/../vendor/autoload.php&#039; ; // Autoload files using Composer autoload
 
-use JVconseil\DkimPhpMailSignature\DKIMsign ;
-use JVconseil\DkimPhpMailSignature\DKIMconfig ;
+use JVconseil\DkimPhpMailSignature\DKIMmail ;
 
-
-/** @var string $config after setting up the config file and your DNS records :*/
-$config = new DKIMconfig(__DIR__ . &#039;/../config/config.sample.inc.php&#039;) ;
+$mail = new DKIMmail() ;
 
 // YOUR E-MAIL
-$to = &#039;recipient@&#039; . $config-&gt;domain ;
+$mail-&gt;to = &#039;recipient@&#039; . $config-&gt;domain ;
 
-$subject = &#039;DKIM e-mail test for domain &#039; . $config-&gt;domain ;
+$mail-&gt;from = &#039;&quot;Sender&quot; &lt;sender@&#039; . $mail-&gt;config-&gt;domain . &#039;&gt;&#039; ;
 
-$headers =
-&#039;MIME-Version: 1.0
-From: &quot;Sender&quot; &lt;sender@&#039; . $config-&gt;domain . &#039;&gt;
-Content-type: text/html; charset=utf8&#039; ;
+$mail-&gt;subject = &#039;DKIM e-mail test for domain &#039; . $mail-&gt;config-&gt;domain ;
 
-$message =
+$mail-&gt;body =
 &#039;&lt;html&gt;
 	&lt;header&gt;&lt;/header&gt;
 	&lt;body&gt;
 		Hello, this a DKIM e-mail test
 	&lt;/body&gt;
 &lt;/html&gt;&#039;;
-	
 
-// Make sure linefeeds are in CRLF format - it is essential for signing
-$message = preg_replace(&#039;/(?&lt;!\r)\n/&#039;, &quot;\r\n&quot;, $message) ;
-$headers = preg_replace(&#039;/(?&lt;!\r)\n/&#039;, &quot;\r\n&quot;, $headers) ;
-
-
-// 1) YOU USUALLY DID :
-// mail($to, $subject, $message, $headers);
-
-
-// 2) NOW YOU WILL DO (you can use options to add some flavor) :
-
-$options = array(
-	&#039;use_dkim&#039; =&gt; false,
-	&#039;use_domainKeys&#039; =&gt; true,
-	&#039;identity&#039; =&gt; $config-&gt;identity,
-	// if you prefer simple canonicalization (though the default &quot;relaxed&quot;
-	// is recommended)
-	&#039;dkim_body_canonicalization&#039; =&gt; &#039;simple&#039;,
-	&#039;dk_canonicalization&#039; =&gt; &#039;nofws&#039;,
-	// if you want to sign the mail on a different list of headers than the
-	// default one (see class constructor). Case-insensitive.
-	&#039;signed_headers&#039; =&gt; array(
-		&#039;message-Id&#039;,
-		&#039;Content-type&#039;,
-		&#039;To&#039;,
-		&#039;subject&#039;
-	)
-);
-
-$sign = new DKIMsign(
-	$config-&gt;private_key,
-	$config-&gt;passphrase,
-	$config-&gt;domain,
-	$config-&gt;selector
-	// $options
-);
-
-$signed_headers = $sign-&gt;get_signed_headers($to, $subject, $message, $headers) ;
+$mail-&gt;set_html_format() ;
 
 try {
-	if (mail($to, $subject, $message, $signed_headers.$headers) == true) {
+	if ($mail-&gt;send() == true) {
 		// header(&#039;Content-Type: text/plain&#039;) ;
-		echo $signed_headers . $headers . &quot;\r\n&quot; ;
-		echo &#039;To: &#039; . $to . &quot;\r\n&quot; ;
-		echo &#039;Subject: &#039; . $subject . &quot;\r\n&quot; ;
-		echo $message . &quot;\r\n&quot; ;
+		echo $mail-&gt;signed_headers . $mail-&gt;headers . &quot;\r\n&quot; ;
+		echo &#039;To: &#039; . $mail-&gt;to . &quot;\r\n&quot; ;
+		echo &#039;Subject: &#039; . $mail-&gt;subject . &quot;\r\n&quot; ;
+		echo $mail-&gt;body . &quot;\r\n&quot; ;
 	}
 } catch (Exception $e) {
     die(&#039;Caught exception: &#039; . $e-&gt;getMessage() . &quot;\r\n&quot;) ;
@@ -447,11 +297,21 @@ try {
                         </section>
                         <section class="row-fluid public">
                             <section class="span4">
-                                                                    <a href="../classes/JVconseil.DkimPhpMailSignature.DKIMsign.html#method___construct" class="">__construct()</a><br />
-                                                                    <a href="../classes/JVconseil.DkimPhpMailSignature.DKIMsign.html#method_get_signed_headers" class="">get_signed_headers()</a><br />
+                                                                    <a href="../classes/JVconseil.DkimPhpMailSignature.DKIMmail.html#method___construct" class="">__construct()</a><br />
+                                                                    <a href="../classes/JVconseil.DkimPhpMailSignature.DKIMmail.html#method_set_html_format" class="">set_html_format()</a><br />
+                                                                    <a href="../classes/JVconseil.DkimPhpMailSignature.DKIMmail.html#method_attach" class="">attach()</a><br />
+                                                                    <a href="../classes/JVconseil.DkimPhpMailSignature.DKIMmail.html#method_build_message" class="">build_message()</a><br />
+                                                                    <a href="../classes/JVconseil.DkimPhpMailSignature.DKIMmail.html#method_build_multipart" class="">build_multipart()</a><br />
+                                                                    <a href="../classes/JVconseil.DkimPhpMailSignature.DKIMmail.html#method_send" class="">send()</a><br />
                                                             </section>
                             <section class="span4">
-                                                                    <em>No public properties found</em>
+                                                                    <a href="../classes/JVconseil.DkimPhpMailSignature.DKIMmail.html#property_to" class="">$to</a><br />
+                                                                    <a href="../classes/JVconseil.DkimPhpMailSignature.DKIMmail.html#property_from" class="">$from</a><br />
+                                                                    <a href="../classes/JVconseil.DkimPhpMailSignature.DKIMmail.html#property_headers" class="">$headers</a><br />
+                                                                    <a href="../classes/JVconseil.DkimPhpMailSignature.DKIMmail.html#property_subject" class="">$subject</a><br />
+                                                                    <a href="../classes/JVconseil.DkimPhpMailSignature.DKIMmail.html#property_body" class="">$body</a><br />
+                                                                    <a href="../classes/JVconseil.DkimPhpMailSignature.DKIMmail.html#property_is_html" class="">$is_html</a><br />
+                                                                    <a href="../classes/JVconseil.DkimPhpMailSignature.DKIMmail.html#property_parts" class="">$parts</a><br />
                                                             </section>
                             <section class="span4">
                                                                     <em>No constants found</em>
@@ -462,7 +322,7 @@ try {
                                                                     <em>No protected methods found</em>
                                                             </section>
                             <section class="span4">
-                                                                    <em>No protected properties found</em>
+                                                                    <a href="../classes/JVconseil.DkimPhpMailSignature.DKIMmail.html#property__config_file" class="">$_config_file</a><br />
                                                             </section>
                             <section class="span4">
                                 <em>N/A</em>
@@ -470,20 +330,10 @@ try {
                         </section>
                         <section class="row-fluid private">
                             <section class="span4">
-                                                                    <a href="../classes/JVconseil.DkimPhpMailSignature.DKIMsign.html#method__dkim_canonicalize_headers_relaxed" class="">_dkim_canonicalize_headers_relaxed()</a><br />
-                                                                    <a href="../classes/JVconseil.DkimPhpMailSignature.DKIMsign.html#method__dkim_canonicalize_body_simple" class="">_dkim_canonicalize_body_simple()</a><br />
-                                                                    <a href="../classes/JVconseil.DkimPhpMailSignature.DKIMsign.html#method__dkim_canonicalize_body_relaxed" class="">_dkim_canonicalize_body_relaxed()</a><br />
-                                                                    <a href="../classes/JVconseil.DkimPhpMailSignature.DKIMsign.html#method__dk_canonicalize_simple" class="">_dk_canonicalize_simple()</a><br />
-                                                                    <a href="../classes/JVconseil.DkimPhpMailSignature.DKIMsign.html#method__dk_canonicalize_nofws" class="">_dk_canonicalize_nofws()</a><br />
-                                                                    <a href="../classes/JVconseil.DkimPhpMailSignature.DKIMsign.html#method__get_dkim_header" class="">_get_dkim_header()</a><br />
-                                                                    <a href="../classes/JVconseil.DkimPhpMailSignature.DKIMsign.html#method__get_dk_header" class="">_get_dk_header()</a><br />
+                                                                    <em>No private methods found</em>
                                                             </section>
                             <section class="span4">
-                                                                    <a href="../classes/JVconseil.DkimPhpMailSignature.DKIMsign.html#property_private_key" class="">$private_key</a><br />
-                                                                    <a href="../classes/JVconseil.DkimPhpMailSignature.DKIMsign.html#property_domain" class="">$domain</a><br />
-                                                                    <a href="../classes/JVconseil.DkimPhpMailSignature.DKIMsign.html#property_selector" class="">$selector</a><br />
-                                                                    <a href="../classes/JVconseil.DkimPhpMailSignature.DKIMsign.html#property_options" class="">$options</a><br />
-                                                                    <a href="../classes/JVconseil.DkimPhpMailSignature.DKIMsign.html#property_canonicalized_headers_relaxed" class="">$canonicalized_headers_relaxed</a><br />
+                                                                    <em>No private properties found</em>
                                                             </section>
                             <section class="span4">
                                 <em>N/A</em>
@@ -496,12 +346,12 @@ try {
                     
                     <dl>
                         <dt>File</dt>
-                            <dd><a href="../files/src.DKIMsign.html"><div class="path-wrapper">src/DKIMsign.php</div></a></dd>
+                            <dd><a href="../files/src.DKIMmail.html"><div class="path-wrapper">src/DKIMmail.php</div></a></dd>
                                                 <dt>Package</dt>
                             <dd><div class="namespace-wrapper">Default</div></dd>
                                                 <dt>Class hierarchy</dt>
                             <dd class="hierarchy">
-                                                                                                                                                                    <div class="namespace-wrapper">\JVconseil\DkimPhpMailSignature\DKIMsign</div>
+                                                                                                                                                                    <div class="namespace-wrapper">\JVconseil\DkimPhpMailSignature\DKIMmail</div>
                             </dd>
 
                         
@@ -509,6 +359,8 @@ try {
                         
                                                                             <dt>See also</dt>
                                                                                         <dd><a href="http://www.jv-conseil.net"><span class="namespace-wrapper">http://www.jv-conseil.net</span></a></dd>
+                                                            <dd><a href=""><span class="namespace-wrapper">https://github.com/JV-conseil-Internet-Consulting/dkim-php-mail-signature</span></a></dd>
+                                                            <dd><a href=""><span class="namespace-wrapper">https://packagist.org/packages/jv-conseil/dkim-php-mail-signature</span></a></dd>
                                                     
                                                                         </dl>
                     <h2>Tags</h2>
@@ -550,108 +402,12 @@ try {
                 <aside class="span4 detailsbar"></aside>
             </div>
 
-                                                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="property_private_key" name="property_private_key" class="anchor"></a>
-            <article class="property">
-                <h3 class="private ">$private_key</h3>
-                <pre class="signature">$private_key : string</pre>
-                <p><em></em></p>
-                
-
-                                <h4>Type</h4>
-                string
-                &mdash; Provide your 2048 bit private key generated in Terminal with command line: ```openssl genrsa -des3 -out private.pem 2048```                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="property_domain" name="property_domain" class="anchor"></a>
+            <a id="property_to" name="property_to" class="anchor"></a>
             <article class="property">
-                <h3 class="private ">$domain</h3>
-                <pre class="signature">$domain : string</pre>
-                <p><em></em></p>
-                
-
-                                <h4>Type</h4>
-                string
-                &mdash; is your domain name e.g.: google.com                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="property_selector" name="property_selector" class="anchor"></a>
-            <article class="property">
-                <h3 class="private ">$selector</h3>
-                <pre class="signature">$selector : string</pre>
-                <p><em></em></p>
-                
-
-                                <h4>Type</h4>
-                string
-                &mdash; is your selector DNS DKIM record e.g.: selector._domainkey.google.com.                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="property_options" name="property_options" class="anchor"></a>
-            <article class="property">
-                <h3 class="private ">$options</h3>
-                <pre class="signature">$options : array</pre>
-                <p><em></em></p>
-                
-
-                                <h4>Type</h4>
-                array
-                                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="property_canonicalized_headers_relaxed" name="property_canonicalized_headers_relaxed" class="anchor"></a>
-            <article class="property">
-                <h3 class="private ">$canonicalized_headers_relaxed</h3>
-                <pre class="signature">$canonicalized_headers_relaxed : </pre>
+                <h3 class="public ">$to</h3>
+                <pre class="signature">$to : </pre>
                 <p><em></em></p>
                 
 
@@ -670,7 +426,175 @@ try {
         </aside>
     </div>
 
-                            
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_from" name="property_from" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$from</h3>
+                <pre class="signature">$from : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_headers" name="property_headers" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$headers</h3>
+                <pre class="signature">$headers : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_subject" name="property_subject" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$subject</h3>
+                <pre class="signature">$subject : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_body" name="property_body" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$body</h3>
+                <pre class="signature">$body : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_is_html" name="property_is_html" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$is_html</h3>
+                <pre class="signature">$is_html : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_parts" name="property_parts" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$parts</h3>
+                <pre class="signature">$parts : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property__config_file" name="property__config_file" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$_config_file</h3>
+                <pre class="signature">$_config_file : string</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                string
+                &mdash; store the path to your &lt;config/config.inc.php&gt; file                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                            
                                     <a id="methods" name="methods"></a>
             <div class="row-fluid">
                 <div class="span8 content class"><h2>Methods</h2></div>
@@ -683,7 +607,41 @@ try {
             <article class="method">
                 <h3 class="public ">__construct()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">__construct(  <span class="argument">$private_key</span>,   <span class="argument">$passphrase</span>,   <span class="argument">$domain</span>,   <span class="argument">$selector</span>,   <span class="argument">$options = array()</span>) </pre>
+                <pre class="signature" style="margin-right: 54px;">__construct(  <span class="argument">$_config_file</span>) </pre>
+                <p><em>constructeur</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$_config_file </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_set_html_format" name="method_set_html_format" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">set_html_format()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">set_html_format(  <span class="argument">$html = true</span>) </pre>
                 <p><em></em></p>
                 
 
@@ -691,27 +649,7 @@ try {
                     <table class="table table-condensed table-hover">
                                                     <tr>
                                 <td></td>
-                                <td>$private_key </td>
-                                <td></td>
-                            </tr>
-                                                    <tr>
-                                <td></td>
-                                <td>$passphrase </td>
-                                <td></td>
-                            </tr>
-                                                    <tr>
-                                <td></td>
-                                <td>$domain </td>
-                                <td></td>
-                            </tr>
-                                                    <tr>
-                                <td></td>
-                                <td>$selector </td>
-                                <td></td>
-                            </tr>
-                                                    <tr>
-                                <td></td>
-                                <td>$options </td>
+                                <td>$html </td>
                                 <td></td>
                             </tr>
                                             </table>
@@ -733,281 +671,11 @@ try {
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="method_get_signed_headers" name="method_get_signed_headers" class="anchor"></a>
+            <a id="method_attach" name="method_attach" class="anchor"></a>
             <article class="method">
-                <h3 class="public ">get_signed_headers()</h3>
+                <h3 class="public ">attach()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">get_signed_headers(  <span class="argument">$to</span>,   <span class="argument">$subject</span>,   <span class="argument">$body</span>,   <span class="argument">$headers</span>) </pre>
-                <p><em>You may leave $to and $subject empty if the corresponding headers are already
-in $headers</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td></td>
-                                <td>$to </td>
-                                <td></td>
-                            </tr>
-                                                    <tr>
-                                <td></td>
-                                <td>$subject </td>
-                                <td></td>
-                            </tr>
-                                                    <tr>
-                                <td></td>
-                                <td>$body </td>
-                                <td></td>
-                            </tr>
-                                                    <tr>
-                                <td></td>
-                                <td>$headers </td>
-                                <td></td>
-                            </tr>
-                                            </table>
-                
-                
-                				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method__dkim_canonicalize_headers_relaxed" name="method__dkim_canonicalize_headers_relaxed" class="anchor"></a>
-            <article class="method">
-                <h3 class="private ">_dkim_canonicalize_headers_relaxed()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">_dkim_canonicalize_headers_relaxed(  <span class="argument">$sHeaders</span>) </pre>
-                <p><em>This function returns an array of relaxed canonicalized headers (lowercases the
-header type and cleans the new lines/spaces according to the RFC requirements).</em></p>
-                <p>only headers required for signature (specified by $options) will be returned
-the result is an array of the type : array(headerType =&gt; fullHeader [, ...]),
-e.g. array('mime-version' =&gt; 'mime-version:1.0')</p>
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td></td>
-                                <td>$sHeaders </td>
-                                <td></td>
-                            </tr>
-                                            </table>
-                
-                
-                				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method__dkim_canonicalize_body_simple" name="method__dkim_canonicalize_body_simple" class="anchor"></a>
-            <article class="method">
-                <h3 class="private ">_dkim_canonicalize_body_simple()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">_dkim_canonicalize_body_simple(  <span class="argument">$body</span>) </pre>
-                <p><em>Apply RFC 4871 requirements before body signature. Do not modify</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td></td>
-                                <td>$body </td>
-                                <td></td>
-                            </tr>
-                                            </table>
-                
-                
-                				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method__dkim_canonicalize_body_relaxed" name="method__dkim_canonicalize_body_relaxed" class="anchor"></a>
-            <article class="method">
-                <h3 class="private ">_dkim_canonicalize_body_relaxed()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">_dkim_canonicalize_body_relaxed(  <span class="argument">$body</span>) </pre>
-                <p><em>Apply RFC 4871 requirements before body signature. Do not modify</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td></td>
-                                <td>$body </td>
-                                <td></td>
-                            </tr>
-                                            </table>
-                
-                
-                				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method__dk_canonicalize_simple" name="method__dk_canonicalize_simple" class="anchor"></a>
-            <article class="method">
-                <h3 class="private ">_dk_canonicalize_simple()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">_dk_canonicalize_simple(  <span class="argument">$body</span>,   <span class="argument">$sHeaders</span>) </pre>
-                <p><em>Apply RFC 4870 requirements before body signature. Do not modify</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td></td>
-                                <td>$body </td>
-                                <td></td>
-                            </tr>
-                                                    <tr>
-                                <td></td>
-                                <td>$sHeaders </td>
-                                <td></td>
-                            </tr>
-                                            </table>
-                
-                
-                				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method__dk_canonicalize_nofws" name="method__dk_canonicalize_nofws" class="anchor"></a>
-            <article class="method">
-                <h3 class="private ">_dk_canonicalize_nofws()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">_dk_canonicalize_nofws(  <span class="argument">$body</span>,   <span class="argument">$sHeaders</span>) </pre>
-                <p><em>Apply RFC 4870 requirements before body signature. Do not modify</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td></td>
-                                <td>$body </td>
-                                <td></td>
-                            </tr>
-                                                    <tr>
-                                <td></td>
-                                <td>$sHeaders </td>
-                                <td></td>
-                            </tr>
-                                            </table>
-                
-                
-                				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method__get_dkim_header" name="method__get_dkim_header" class="anchor"></a>
-            <article class="method">
-                <h3 class="private ">_get_dkim_header()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">_get_dkim_header(  <span class="argument">$body</span>) </pre>
-                <p><em>The function will return no DKIM header (no signature) if there is a failure,
-so the mail will still be sent in the default unsigned way
-it is highly recommended that all linefeeds in the $body and $headers you submit
-are in the CRLF (\r\n) format !! Otherwise signature may fail with some MTAs</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td></td>
-                                <td>$body </td>
-                                <td></td>
-                            </tr>
-                                            </table>
-                
-                
-                				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method__get_dk_header" name="method__get_dk_header" class="anchor"></a>
-            <article class="method">
-                <h3 class="private ">_get_dk_header()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">_get_dk_header(  <span class="argument">$body</span>,   <span class="argument">$sHeaders</span>) </pre>
+                <pre class="signature" style="margin-right: 54px;">attach(  <span class="argument">$message</span>,   <span class="argument">$name</span>,   <span class="argument">$ctype = &#039;&#039;</span>) </pre>
                 <p><em></em></p>
                 
 
@@ -1015,12 +683,17 @@ are in the CRLF (\r\n) format !! Otherwise signature may fail with some MTAs</em
                     <table class="table table-condensed table-hover">
                                                     <tr>
                                 <td></td>
-                                <td>$body </td>
+                                <td>$message </td>
                                 <td></td>
                             </tr>
                                                     <tr>
                                 <td></td>
-                                <td>$sHeaders </td>
+                                <td>$name </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>$ctype </td>
                                 <td></td>
                             </tr>
                                             </table>
@@ -1040,16 +713,133 @@ are in the CRLF (\r\n) format !! Otherwise signature may fail with some MTAs</em
         </aside>
     </div>
 
-                                    </div>
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_build_message" name="method_build_message" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">build_message()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">build_message(  <span class="argument">$part</span>,   <span class="argument">$charset = &#039;UTF-8&#039;</span>) </pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$part </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>$charset </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_build_multipart" name="method_build_multipart" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">build_multipart()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">build_multipart(  <span class="argument">$type = &#039;mixed&#039;</span>,   <span class="argument">$charset = &#039;UTF-8&#039;</span>,   <span class="argument">$boundary = &#039;&#039;</span>) </pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$type </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>$charset </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>$boundary </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_send" name="method_send" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">send()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">send(  <span class="argument">$test = false</span>) </pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$test </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                                    </div>
     </section>
 
     <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h3 id="source-view-label">DKIMsign.php</h3>
+            <h3 id="source-view-label">DKIMmail.php</h3>
         </div>
         <div class="modal-body">
-            <pre data-src="../files/src/DKIMsign.php.txt" class="language-php line-numbers"></pre>
+            <pre data-src="../files/src/DKIMmail.php.txt" class="language-php line-numbers"></pre>
         </div>
     </div>
 

@@ -114,12 +114,12 @@
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="../reports/errors.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">30</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">55</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="../reports/markers.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
                                 </a>
                             </li>
                             <li>
@@ -144,33 +144,34 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-707906009"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1168647251"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-707906009" class="accordion-body collapse in">
+            <div id="namespace-1168647251" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-137498924"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1201938859"></a>
                                 <a href="../namespaces/JVconseil.html" style="margin-left: 30px; padding-left: 0">JVconseil</a>
             </div>
-            <div id="namespace-137498924" class="accordion-body collapse ">
+            <div id="namespace-1201938859" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-182408137"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-454920178"></a>
                                 <a href="../namespaces/JVconseil.DkimPhpMailSignature.html" style="margin-left: 30px; padding-left: 0">DkimPhpMailSignature</a>
             </div>
-            <div id="namespace-182408137" class="accordion-body collapse ">
+            <div id="namespace-454920178" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
                     <ul>
                                                                                                     <li class="class"><a href="../classes/JVconseil.DkimPhpMailSignature.DKIMconfig.html">DKIMconfig</a></li>
+                                                    <li class="class"><a href="../classes/JVconseil.DkimPhpMailSignature.DKIMmail.html">DKIMmail</a></li>
                                                     <li class="class"><a href="../classes/JVconseil.DkimPhpMailSignature.DKIMsign.html">DKIMsign</a></li>
                                             </ul>
                 </div>
@@ -255,6 +256,9 @@ $config-&gt;domain = "mynewdomain.name" ;
 
 // get: this calls __get()
 $config-&gt;domain ; // =&gt; "mynewdomain.name" ;</code></pre>
+<h3>Sponsorship</h3>
+<p>If this project helps you reduce time to develop, you can give me a cup of coffee ☕️ :-)</p>
+<p><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=P3DGL6EANDY96&amp;source=url"><img src="https://www.paypalobjects.com/en_US/FR/i/btn/btn_donateCC_LG.gif" alt="Donate with PayPal" /></a></p>
                     
                                                                         <h3>Examples</h3>
                                                                             <h4>Here is config.sample.inc.php:</h4>
@@ -283,7 +287,7 @@ $config-&gt;domain ; // =&gt; "mynewdomain.name" ;</code></pre>
  * @see https://github.com/JV-conseil-Internet-Consulting/dkim-php-mail-signature
  * @see https://packagist.org/packages/jv-conseil/dkim-php-mail-signature
  * @license BSD 3-Clause License, Copyright (c) 2019, JV conseil – Internet Consulting, All rights reserved.
- * @version v1.0.4
+ * @version v1.2.0
  */
 return array(
     &#039;domain&#039;        =&gt;  &#039;example.com&#039;,
@@ -397,7 +401,7 @@ return array(
                                 version
                             </th>
                             <td>
-                                                                    <p>v1.0.4</p>
+                                                                    <p>v1.2.0</p>
                                                             </td>
                         </tr>
                                         </table>
@@ -474,10 +478,18 @@ return array(
             <article class="method">
                 <h3 class="public ">__construct()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">__construct() : object</pre>
+                <pre class="signature" style="margin-right: 54px;">__construct(  <span class="argument">$_config_file</span>) : object</pre>
                 <p><em></em></p>
                 
 
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$_config_file </td>
+                                <td></td>
+                            </tr>
+                                            </table>
                 
                 
                                     <h4>Returns</h4>
@@ -582,10 +594,18 @@ return array(
             <article class="method">
                 <h3 class="private ">_include_config_file()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">_include_config_file() : array</pre>
+                <pre class="signature" style="margin-right: 54px;">_include_config_file(  <span class="argument">$_config_file = null</span>) : array</pre>
                 <p><em></em></p>
                 
 
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$_config_file </td>
+                                <td></td>
+                            </tr>
+                                            </table>
                 
                 
                                     <h4>Returns</h4>
@@ -655,7 +675,7 @@ return array(
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on November 18th, 2019 at 00:49.
+                    on November 18th, 2019 at 18:51.
                 </section>
             </section>
         </section>

@@ -1,10 +1,10 @@
 <?php
 /**
- * Class example with config file accessed through a class.
+ * Simple example test with config file accessed through a var.
  * 
  * To test this example enter in Terminal this command line:
  * ```
- * php ~/dkim-php-mail-signature/examples/ClassMethod.php
+ * php ~/dkim-php-mail-signature/examples/SignSimple.php
  * ``` 
  * 
  * @author JV conseil — Internet Consulting <contact@jv-conseil.net>
@@ -12,29 +12,28 @@
  * @see https://github.com/JV-conseil-Internet-Consulting/dkim-php-mail-signature
  * @see https://packagist.org/packages/jv-conseil/dkim-php-mail-signature
  * @license BSD 3-Clause License, Copyright (c) 2019, JV conseil – Internet Consulting, All rights reserved.
- * @version v1.0.4
+ * @version v1.2.0
  */
 
 
- /** Call Composer Package JVconseil\DkimPhpMailSignature */
+/** Call Composer Package JVconseil\DkimPhpMailSignature */
 require_once __DIR__ . '/../vendor/autoload.php' ; // Autoload files using Composer autoload
 
 use JVconseil\DkimPhpMailSignature\DKIMsign ;
-use JVconseil\DkimPhpMailSignature\DKIMconfig ;
-
 
 /** @var string $config after setting up the config file and your DNS records :*/
-$config = new DKIMconfig(__DIR__ . '/../config/config.sample.inc.php') ;
+$config = include_once(__DIR__ . '/../config/config.sample.inc.php') ;
+
 
 // YOUR E-MAIL
-$to = 'recipient@' . $config->domain ;
+$to = 'recipient@' . $config['domain'] ;
 
-$subject = 'DKIM e-mail test for domain ' . $config->domain ;
+$subject = 'DKIM e-mail test for domain ' . $config['domain'] ;
 
 $headers =
 'MIME-Version: 1.0
-From: "Sender" <sender@' . $config->domain . '>
-Content-type: text/html; charset=utf8' ;
+From: "Sender" <sender@' . $config['domain'] . '>
+Content-type: text/html; charset=utf8';
 
 $message =
 '<html>
@@ -59,7 +58,7 @@ $headers = preg_replace('/(?<!\r)\n/', "\r\n", $headers) ;
 $options = array(
 	'use_dkim' => false,
 	'use_domainKeys' => true,
-	'identity' => $config->identity,
+	'identity' => $config['identity'],
 	// if you prefer simple canonicalization (though the default "relaxed"
 	// is recommended)
 	'dkim_body_canonicalization' => 'simple',
@@ -74,19 +73,20 @@ $options = array(
 	)
 );
 
-$sign = new DKIMsign(
-	$config->private_key,
-	$config->passphrase,
-	$config->domain,
-	$config->selector
-	// $options
+$signature = new DKIMsign(
+	// $options,
+	$config['private_key'],
+	$config['passphrase'],
+	$config['domain'],
+	$config['selector']
 );
 
-$signed_headers = $sign->get_signed_headers($to, $subject, $message, $headers) ;
+$signed_headers = $signature -> get_signed_headers($to, $subject, $message, $headers) ;
 
 try {
 	if (mail($to, $subject, $message, $signed_headers.$headers) == true) {
 		// header('Content-Type: text/plain') ;
+		header('Content-Type: text/plain') ;
 		echo $signed_headers . $headers . "\r\n" ;
 		echo 'To: ' . $to . "\r\n" ;
 		echo 'Subject: ' . $subject . "\r\n" ;
