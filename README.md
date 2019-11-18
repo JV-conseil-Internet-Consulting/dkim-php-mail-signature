@@ -120,4 +120,4 @@ You can generate API documentation by running `phpdoc` in the top-level folder o
 php ~/vendor/bin/phpdoc -d ~/dkim-php-mail-signature/ -t ~/dkim-php-mail-signature/docs/
 ```
 
-You will need to have [phpDocumentor](https://www.phpdoc.org) installed, though you will already have that if you installed PHPMailer using composer with dev modules enabled.
+You will need to have [phpDocumentor](https://www.phpdoc.org) installed.
