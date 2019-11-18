@@ -4,7 +4,7 @@
  * 
  * To test this example enter in Terminal this command line:
  * ```
- * php ~/dkim-php-mail-signature/examples/ClassMethod.php
+ * php ~/dkim-php-mail-signature/examples/SendMail.php
  * ``` 
  * 
  * @author JV conseil — Internet Consulting <contact@jv-conseil.net>
