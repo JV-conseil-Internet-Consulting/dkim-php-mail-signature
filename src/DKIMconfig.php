@@ -89,7 +89,7 @@ namespace JVconseil\DkimPhpMailSignature;
  * $config->domain ; // => "mynewdomain.name" ;
  * ```
  *  
- * @example ./config/config.sample.inc.php Here is config.sample.inc.php: 
+ * @example /../config/config.sample.inc.php Here is config.sample.inc.php: 
  * 
  * @return string Configuration paramaters to sign your email with DKIM.
  * 
