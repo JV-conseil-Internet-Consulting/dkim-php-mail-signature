@@ -114,12 +114,12 @@
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="../reports/errors.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">55</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">55</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="../reports/markers.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
                                 </a>
                             </li>
                             <li>
@@ -144,28 +144,28 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1614007885"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-368436276"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-1614007885" class="accordion-body collapse in">
+            <div id="namespace-368436276" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1797637958"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-346519430"></a>
                                 <a href="../namespaces/JVconseil.html" style="margin-left: 30px; padding-left: 0">JVconseil</a>
             </div>
-            <div id="namespace-1797637958" class="accordion-body collapse ">
+            <div id="namespace-346519430" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1050636815"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1504753697"></a>
                                 <a href="../namespaces/JVconseil.DkimPhpMailSignature.html" style="margin-left: 30px; padding-left: 0">DkimPhpMailSignature</a>
             </div>
-            <div id="namespace-1050636815" class="accordion-body collapse ">
+            <div id="namespace-1504753697" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -228,59 +228,7 @@ $mail-&gt;send() ;</code></pre>
                     
                                                                         <h3>Examples</h3>
                                                                             <h4>Send DKIM sign emails:</h4>
-                            <pre class="pre-scrollable">&lt;?php
-/**
- * Class example with config file accessed through a class.
- * 
- * To test this example enter in Terminal this command line:
- * ```
- * php ~/dkim-php-mail-signature/examples/ClassMethod.php
- * ``` 
- * 
- * @author JV conseil — Internet Consulting &lt;contact@jv-conseil.net&gt;
- * @see http://www.jv-conseil.net
- * @see https://github.com/JV-conseil-Internet-Consulting/dkim-php-mail-signature
- * @see https://packagist.org/packages/jv-conseil/dkim-php-mail-signature
- * @license BSD 3-Clause License, Copyright (c) 2019, JV conseil – Internet Consulting, All rights reserved.
- * @version v1.2.0
- */
-
-
- /** Call Composer Package JVconseil\DkimPhpMailSignature */
-require_once __DIR__ . &#039;/../vendor/autoload.php&#039; ; // Autoload files using Composer autoload
-
-use JVconseil\DkimPhpMailSignature\DKIMmail ;
-
-$mail = new DKIMmail() ;
-
-// YOUR E-MAIL
-$mail-&gt;to = &#039;recipient@&#039; . $config-&gt;domain ;
-
-$mail-&gt;from = &#039;&quot;Sender&quot; &lt;sender@&#039; . $mail-&gt;config-&gt;domain . &#039;&gt;&#039; ;
-
-$mail-&gt;subject = &#039;DKIM e-mail test for domain &#039; . $mail-&gt;config-&gt;domain ;
-
-$mail-&gt;body =
-&#039;&lt;html&gt;
-	&lt;header&gt;&lt;/header&gt;
-	&lt;body&gt;
-		Hello, this a DKIM e-mail test
-	&lt;/body&gt;
-&lt;/html&gt;&#039;;
-
-$mail-&gt;set_html_format() ;
-
-try {
-	if ($mail-&gt;send() == true) {
-		// header(&#039;Content-Type: text/plain&#039;) ;
-		echo $mail-&gt;signed_headers . $mail-&gt;headers . &quot;\r\n&quot; ;
-		echo &#039;To: &#039; . $mail-&gt;to . &quot;\r\n&quot; ;
-		echo &#039;Subject: &#039; . $mail-&gt;subject . &quot;\r\n&quot; ;
-		echo $mail-&gt;body . &quot;\r\n&quot; ;
-	}
-} catch (Exception $e) {
-    die(&#039;Caught exception: &#039; . $e-&gt;getMessage() . &quot;\r\n&quot;) ;
-}</pre>
+                            <pre class="pre-scrollable">** File not found : /../examples/SendMail.php **</pre>
                                                                 
                     <section id="summary">
                         <h2>Summary</h2>
@@ -880,7 +828,7 @@ try {
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on November 18th, 2019 at 18:51.
+                    on November 18th, 2019 at 22:17.
                 </section>
             </section>
         </section>

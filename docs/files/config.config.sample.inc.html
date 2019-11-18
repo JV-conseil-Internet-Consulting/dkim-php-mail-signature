@@ -144,28 +144,28 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1271427666"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1426695314"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-1271427666" class="accordion-body collapse in">
+            <div id="namespace-1426695314" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-369338281"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1703342244"></a>
                                 <a href="../namespaces/JVconseil.html" style="margin-left: 30px; padding-left: 0">JVconseil</a>
             </div>
-            <div id="namespace-369338281" class="accordion-body collapse ">
+            <div id="namespace-1703342244" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1531139747"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1856799195"></a>
                                 <a href="../namespaces/JVconseil.DkimPhpMailSignature.html" style="margin-left: 30px; padding-left: 0">DkimPhpMailSignature</a>
             </div>
-            <div id="namespace-1531139747" class="accordion-body collapse ">
+            <div id="namespace-1856799195" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -205,10 +205,23 @@
                                                                     </nav>
 
                     <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
-                    <h1><small>examples</small>SignWithConfigClass.php</h1>
-                    <p><em>Class example with config file accessed through a class.</em></p>
-                    <p>To test this example enter in Terminal this command line:</p>
-<pre><code>php ~/dkim-php-mail-signature/examples/SignWithConfigClass.php</code></pre>
+                    <h1><small>config</small>config.sample.inc.php</h1>
+                    <p><em>The File to store your Configuration paramaters.</em></p>
+                    <p>Before starting you should make a copy of folder <code>config/</code> and store it outside your <code>vendor/</code> Composer repository in a non-public area of your website e.g.:</p>
+<pre><code>~/mywebsite/includes/config/</code></pre>
+<p>Failing to do so will expose you to lose all your settings in case of a future Composer udpate.</p>
+<h2>Generate your Public &amp; Private Encryption keys</h2>
+<p>In Terminal enter this command line to start working under the path of your <code>config/</code> folder:</p>
+<pre><code>cd ~/mywebsite/includes/config/</code></pre>
+<p>In Terminal enter this command line to generate a new <strong>private 2048 bit encryption key</strong>:</p>
+<pre><code>openssl genrsa -des3 -out private.pem 2048</code></pre>
+<p>Enter your *<em>Pass Phrase</em>and save it for editing your <code>config.inc.php</code> file in the next step.</p>
+<p>Then retrieve your <strong>public key</strong>:</p>
+<pre><code>openssl rsa -in private.pem -out public.pem -outform PEM -pubout</code></pre>
+<p><em>You can delete the two originals <code>*.pem</code> file keys stored in the <code>config/</code> folder if they create a conflict in the creation process of your keys.</em></p>
+<h1>Sponsorship</h1>
+<p>If this project helps you reduce time to develop, you can give me a cup of coffee ☕️ :-)</p>
+<p><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=P3DGL6EANDY96&amp;source=url"><img src="https://www.paypalobjects.com/en_US/FR/i/btn/btn_donateCC_LG.gif" alt="Donate with PayPal" /></a></p>
 
                     
                     
@@ -227,6 +240,27 @@
                     </dl>
                     <h2>Tags</h2>
                     <table class="table table-condensed">
+                                                    <tr>
+                                <th>
+                                    var
+                                </th>
+                                <td>
+                                                                            <p>domain: domain name e.g.: google.com.</p>
+                                                                            <p>selector: selector used in your DKIM DNS record, e.g.: selector._domainkey.MAIL_DKIM_DOMAIN</p>
+                                                                            <p>passphrase: your pass phrase used to generate your keys e.g.: myPassPhrase.</p>
+                                                                            <p>private_key: string retrieved from private.pem file.</p>
+                                                                            <p>public_key: string retrieved from public.pem file.</p>
+                                                                            <p>identity: Allowed user, defaults is "@<MAIL_DKIM_DOMAIN>", meaning anybody in the MAIL_DKIM_DOMAIN domain. Ex: 'admin@mydomain.tld'. You'll never have to use this unless you do not control the "From" value in the e-mails you send.</p>
+                                                                    </td>
+                            </tr>
+                                                    <tr>
+                                <th>
+                                    return
+                                </th>
+                                <td>
+                                                                            <p>an array of configuration paramaters.</p>
+                                                                    </td>
+                            </tr>
                                                     <tr>
                                 <th>
                                     author
@@ -267,7 +301,7 @@
             <h3 id="source-view-label"></h3>
         </div>
         <div class="modal-body">
-            <pre data-src="../files/examples/SignWithConfigClass.php.txt" class="language-php line-numbers"></pre>
+            <pre data-src="../files/config/config.sample.inc.php.txt" class="language-php line-numbers"></pre>
         </div>
     </div>
 

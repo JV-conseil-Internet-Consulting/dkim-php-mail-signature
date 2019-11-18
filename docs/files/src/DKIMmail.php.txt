@@ -70,27 +70,10 @@ class DKIMmail {
 
   // attache un fichier au message
   function attach($message,$name,$ctype='') {
-    /*
-    if(empty($ctype)) { // type de contenu non defini
-      switch(strrchr(basename($name),".")) { // on essaie de reconnaitre l'extension
-        case ".gz" :  $ctype =  "application/x-gzip"; break;
-        case ".tgz":  $ctype =  "application/x-gzip"; break;
-        case ".zip":  $ctype =  "application/zip";    break;
-        case ".pdf":  $ctype =  "application/pdf";    break;        
-        case ".png":  $ctype =  "image/png";  break;
-        case ".gif":  $ctype =  "image/gif";  break;
-        case ".jpg":  $ctype =  "image/jpeg"; break;
-        case ".txt":  $ctype =  "text/plain"; break;
-        case ".htm":  $ctype =  "text/html";  break;
-        case ".html": $ctype =  "text/html";  break;
-        case ".ics":  $ctype =  "text/calendar";  break;
-        case ".doc":  $ctype =  "application/msword";  break;
-        case ".xls":  $ctype =  "application/vnd.ms-excel";  break;
-        default:      $ctype =  "application/octet-stream"; break;
-      }
-    }
-    */
-    if (!$ctype) $ctype = get_mime_type($name) ;
+    
+    // if (!$ctype) $ctype = get_mime_type($name) ;
+
+    if (!$ctype) $ctype = mime_content_type($name) ;
 		
 		$encode = 'base64';
     if (in_array($ctype, array('text/plain','text/html'))) $encode = '7bit';      
@@ -149,13 +132,14 @@ class DKIMmail {
     if (!empty($this->headers)) $mime.= $this->headers."\r\n" ;
 		$mime.= "Date: ".gmdate("D, d M Y H:i:s", time())." -0000\r\n" ; // Correction de la date foireuse :
 		$mime.= "X-Mailer: PHP/" . phpversion() . "\r\n" ; // entetes supplementaires (optionnel)
-		$mime.= "X-Sender: <www." . $this->config->domain . ">\r\n" ; 
-		$mime.= "X-auth-smtp-user: " . ($xabuse = preg_replace('/^(.*)<(.*)>/i', '\2', $this->from)) . "\r\n" ; 
-    $mime.= "X-abuse-contact: " . $xabuse . "\r\n" ; 
-    $mime.= "X-Priority: 1\r\n" ;
-    $mime.= "Disposition-Notification-To: " . $xabuse . "\r\n" ;
-    $mime.= "Return-receipt-to: " . $xabuse . "\r\n" ;
-    $mime.= "X-Confirm-Reading-To: " . $xabuse . "\r\n" ;
+    $mime.= "X-Sender: <www." . $this->config->domain . ">\r\n" ; 
+    /** @todo Disposition-Notification-To */
+		// $mime.= "X-auth-smtp-user: " . ($xabuse = preg_replace('/^(.*)<(.*)>/i', '\2', $this->from)) . "\r\n" ; 
+    // $mime.= "X-abuse-contact: " . $xabuse . "\r\n" ; 
+    // $mime.= "X-Priority: 1\r\n" ;
+    // $mime.= "Disposition-Notification-To: " . $xabuse . "\r\n" ;
+    // $mime.= "Return-receipt-to: " . $xabuse . "\r\n" ;
+    // $mime.= "X-Confirm-Reading-To: " . $xabuse . "\r\n" ;
     $mime.= "Thread-Topic: " . $this->subject . "\r\n" ;
     $mime.= "MIME-Version: 1.0 \r\n" ;
 		
@@ -164,28 +148,15 @@ class DKIMmail {
     // Cas des mails avec PJ
     if (count($this->parts) > 0) {
       if (!empty($this->body)) $this->attach($this->body, "", $text_type) ;
-      /*
-      $type = 'mixed';
-      $body = "" ;
-      $mime.= "MIME-Version: 1.0 \r\n" . $this->build_multipart('mixed', $charset) ;
-      */
       $boundary = "DKIMmail-Part-" . md5(uniqid(time())) ;
       $mime.= "Content-Type: multipart/mixed; boundary=\"$boundary\"";
       $body = $this->build_multipart('mixed', $charset, $boundary) ;
     } else { // Cas des mails tous simples
-			//$mime.= "MIME-Version: 1.0 \r\n";
 			$mime.= "Content-Type: $text_type; charset=$charset \r\n";
 			$mime.= "Content-Transfer-Encoding: 7bit \r\n";
 			$mime.= "Content-Disposition: inline \r\n";
       $body = $this->body ;
     }
-
-    /** Signature DKIM */
-    /** Call Composer Package JVconseil\DkimPhpMailSignature */
-    //require_once __DIR__ . '/../vendor/autoload.php' ; // Autoload files using Composer autoload
-
-    //use JVconseil\DkimPhpMailSignature\DKIMsign ;
-    //use JVconseil\DkimPhpMailSignature\DKIMconfig ;
 
 		/* Make sure linefeeds are in CRLF format - it is essential for signing **/
 		$this->body = preg_replace('/(?<!\r)\r\n/', "\r\n", $body) ;
@@ -199,8 +170,6 @@ class DKIMmail {
     );
     
     $this->signed_headers = $sign->get_signed_headers($this->to, $this->subject, $this->body, $this->headers) ;
-
-		// mail($to, $subject, $message, $signed_headers.$headers) ;
 
     // envoi du message
     if ($test == false) {
