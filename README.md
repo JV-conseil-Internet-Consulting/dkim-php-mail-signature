@@ -67,12 +67,12 @@ _You can delete the two originals `*.pem` file keys stored in the `config/` fold
 
 ## Edit your DNS with a new DKIM record
 
-Access your registrar interface (e.g.: OVH.com) and create a new **DKIM record**:
+Access your registrar interface (e.g.: OVH.com) and create a new **DKIM record** to declare your **public key**:
 ```
 selector._domainkey  IN TXT  ( "v=DKIM1;k=rsa;p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0ekggNf9vuzzL4SlVc8QZyyqbEwR5bVTPC9cEZ8hFqTKOc7go180n3RZilYJZvveaxBkLCVJSTQaMPtKuSptY5au6Pi3AkFlizzhUJ80+0zgZXSGx7gfbginbRwhD+XdGOe9NXpo0PfrD6dEJ49Ytx4/nHB0TKiL227C0kGWb7RfWTVWccgJq4+kQb4l+4" "oDU5rGomSYK+zmMV13QTSETcJnoXhmjoJ30omyJfEXAsK5Ny0LJo8rWCucLD31BxHrM9/+M/Ye+TWxcrD2mRh5Jxqcnyj00/7kCnWeGPTftVKkAJBP3JMRqCNShLUchLhaz0qeXUtxAe9dx7ltr8042QIDAQAB;" )
 ```
 
-DKIM works better with **SPF*and **DMARC*records, you should consider editing them too:
+DKIM works better with **SPF** and **DMARC** records, you should consider editing them too:
 ```
 3600     IN TXT  "v=spf1 include:_spf.google.com ~all"
 _dmarc   IN TXT  "v=DMARC1; p=quarantine; rua=mailto:me@yourdomain.name"
