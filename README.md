@@ -140,8 +140,8 @@ php ~/vendor/bin/phpdoc -d ~/dkim-php-mail-signature/ -t ~/dkim-php-mail-signatu
 You will need to have [phpDocumentor](https://www.phpdoc.org) installed.
 
 
-# Donation
+# Sponsorship
 
-If this project help you reduce time to develop, you can give me a cup of coffee :)
+If this project helps you reduce time to develop, you can give me a cup of coffee ☕️ :-)
 
 [![Donate with PayPal](https://www.paypalobjects.com/en_US/FR/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=P3DGL6EANDY96&source=url)
