@@ -208,11 +208,11 @@
                     <h1><small>config</small>config.sample.inc.php</h1>
                     <p><em>The File to store your Configuration paramaters.</em></p>
                     <p>Before starting you should make a copy of folder <code>config/</code> and store it outside your <code>vendor/</code> Composer repository in a non-public area of your website e.g.:</p>
-<pre><code>~/mywebsite/includes/config/</code></pre>
+<pre><code>/www/inc/config/jv-conseil/dkim-php-mail-signature/</code></pre>
 <p>Failing to do so will expose you to lose all your settings in case of a future Composer udpate.</p>
 <h2>Generate your Public &amp; Private Encryption keys</h2>
 <p>In Terminal enter this command line to start working under the path of your <code>config/</code> folder:</p>
-<pre><code>cd ~/mywebsite/includes/config/</code></pre>
+<pre><code>cd /www/inc/config/jv-conseil/dkim-php-mail-signature/</code></pre>
 <p>In Terminal enter this command line to generate a new <strong>private 2048 bit encryption key</strong>:</p>
 <pre><code>openssl genrsa -des3 -out private.pem 2048</code></pre>
 <p>Enter your *<em>Pass Phrase</em>and save it for editing your <code>config.inc.php</code> file in the next step.</p>

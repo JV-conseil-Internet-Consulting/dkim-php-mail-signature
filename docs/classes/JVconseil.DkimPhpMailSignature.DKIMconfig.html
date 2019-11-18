@@ -210,11 +210,11 @@
                     <p><em>Step by Step guide to generate your encryption keys and populate them through your DNS records.</em></p>
                     <h3>Make your own copy of config file</h3>
 <p>Before starting you should make a copy of folder <code>config/</code> and store it outside your <code>vendor/</code> Composer repository in a non-public area of your website e.g.:</p>
-<pre><code>~/mywebsite/includes/config/</code></pre>
+<pre><code>/www/inc/config/jv-conseil/dkim-php-mail-signature/</code></pre>
 <p>Failing to do so will expose you to lose all your settings in case of a future Composer udpate.</p>
 <h3>Generate your Public &amp; Private Encryption keys</h3>
 <p>In Terminal enter this command line to start working under the path of your <code>config/</code> folder:</p>
-<pre><code>cd ~/mywebsite/includes/config/</code></pre>
+<pre><code>cd /www/inc/config/jv-conseil/dkim-php-mail-signature/</code></pre>
 <p>In Terminal enter this command line to generate a new <strong>private 2048 bit encryption key</strong>:</p>
 <pre><code>openssl genrsa -des3 -out private.pem 2048</code></pre>
 <p>Enter your <strong>Pass Phrase</strong> and save it for editing your <code>config.inc.php</code> file in the next step.</p>
@@ -249,7 +249,7 @@ use JVconseil\DkimPhpMailSignature\DKIMsign ;
 use JVconseil\DkimPhpMailSignature\DKIMconfig ;
 
 // init
-$config = new DKIMconfig('~/mywebsite/includes/config/config.inc.php') ;
+$config = new DKIMconfig('/www/inc/config/jv-conseil/dkim-php-mail-signature/config.inc.php') ;
 
 // set: this calls __set()
 $config-&gt;domain = "mynewdomain.name" ;
@@ -269,7 +269,7 @@ $config-&gt;domain ; // =&gt; "mynewdomain.name" ;</code></pre>
  * Before starting you should make a copy of folder `config/` and store it outside your `vendor/` Composer repository in a non-public area of your website e.g.: 
  * 
  * ```
- * ~/mywebsite/includes/config/
+ * /www/inc/config/jv-conseil/dkim-php-mail-signature/
  * ```
  * 
  * Failing to do so will expose you to lose all your settings in case of a future Composer udpate.
@@ -278,7 +278,7 @@ $config-&gt;domain ; // =&gt; "mynewdomain.name" ;</code></pre>
  * 
  * In Terminal enter this command line to start working under the path of your `config/` folder:
  * ```
- * cd ~/mywebsite/includes/config/
+ * cd /www/inc/config/jv-conseil/dkim-php-mail-signature/
  * ```
  * 
  * In Terminal enter this command line to generate a new **private 2048 bit encryption key**:

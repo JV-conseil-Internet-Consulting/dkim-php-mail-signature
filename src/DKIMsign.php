@@ -101,7 +101,7 @@ namespace JVconseil\DkimPhpMailSignature;
  * use JVconseil\DkimPhpMailSignature\DKIMconfig ;
  * 
  * // init
- * $config = new DKIMconfig('~/mywebsite/includes/config/config.inc.php') ;
+ * $config = new DKIMconfig('/www/inc/config/jv-conseil/dkim-php-mail-signature/config.inc.php') ;
  * $sign = new DKIMsign(
  * $config->private_key,
  * $config->passphrase,

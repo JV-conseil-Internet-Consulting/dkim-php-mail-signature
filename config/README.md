@@ -7,7 +7,7 @@
 
 Before starting you should make a copy of folder `config/` and store it outside your `vendor/` Composer repository in a non-public area of your website e.g.: 
 ```
-~/mywebsite/includes/config/
+/www/inc/config/jv-conseil/dkim-php-mail-signature/
 ```
 
 Failing to do so will expose you to lose all your settings in case of a future Composer udpate.
@@ -16,7 +16,7 @@ Failing to do so will expose you to lose all your settings in case of a future C
 
 In Terminal enter this command line to start working under the path of your `config/` folder:
 ```
-cd ~/mywebsite/includes/config/
+cd /www/inc/config/jv-conseil/dkim-php-mail-signature/
 ```
 
 In Terminal enter this command line to generate a new **private 2048 bit encryption key**:

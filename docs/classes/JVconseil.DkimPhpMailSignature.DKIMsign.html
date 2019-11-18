@@ -215,7 +215,7 @@ use JVconseil\DkimPhpMailSignature\DKIMsign ;
 use JVconseil\DkimPhpMailSignature\DKIMconfig ;
 
 // init
-$config = new DKIMconfig('~/mywebsite/includes/config/config.inc.php') ;
+$config = new DKIMconfig('/www/inc/config/jv-conseil/dkim-php-mail-signature/config.inc.php') ;
 $sign = new DKIMsign(
 $config-&gt;private_key,
 $config-&gt;passphrase,
