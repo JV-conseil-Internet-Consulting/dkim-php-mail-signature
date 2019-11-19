@@ -84,7 +84,7 @@
  * @see https://github.com/JV-conseil-Internet-Consulting/dkim-php-mail-signature
  * @see https://packagist.org/packages/jv-conseil/dkim-php-mail-signature
  * @license BSD 3-Clause License, Copyright (c) 2019, JV conseil – Internet Consulting, All rights reserved.
- * @version v1.2.1
+ * @version v1.2.2
  */
 
 namespace JVconseil\DkimPhpMailSignature;
@@ -134,7 +134,7 @@ namespace JVconseil\DkimPhpMailSignature;
  * @author JV conseil — Internet Consulting <contact@jv-conseil.net>
  * @see http://www.jv-conseil.net
  * @license BSD 3-Clause License, Copyright (c) 2019, JV conseil – Internet Consulting, All rights reserved.
- * @version v1.2.1
+ * @version v1.2.2
  */
 class DKIMsign {
 

@@ -114,7 +114,7 @@
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="../reports/errors.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">55</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">52</span>
                                 </a>
                             </li>
                             <li>
@@ -144,28 +144,28 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-322879318"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1821481584"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-322879318" class="accordion-body collapse in">
+            <div id="namespace-1821481584" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1407421887"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2144040915"></a>
                                 <a href="../namespaces/JVconseil.html" style="margin-left: 30px; padding-left: 0">JVconseil</a>
             </div>
-            <div id="namespace-1407421887" class="accordion-body collapse ">
+            <div id="namespace-2144040915" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-340351203"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-815384507"></a>
                                 <a href="../namespaces/JVconseil.DkimPhpMailSignature.html" style="margin-left: 30px; padding-left: 0">DkimPhpMailSignature</a>
             </div>
-            <div id="namespace-340351203" class="accordion-body collapse ">
+            <div id="namespace-815384507" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -209,18 +209,17 @@
                     <h1><small>\JVconseil\DkimPhpMailSignature</small>DKIMmail</h1>
                     <p><em>DKIMmail class</em></p>
                     <h3>Usage</h3>
-<pre><code>// instanciation de la classe
-$mail = new DKIMmail();
+<pre><code>// init
+$mail = new DKIMmail('/www/inc/config/jv-conseil/dkim-php-mail-signature/config.inc.php') ;
 
-// parametres
-$mail-&gt;to = "adresse@email";                // Adresse email de reception
-$mail-&gt;subject = "Test";                    // Sujet
-$mail-&gt;body = "Ceci est un test.";          // Corps du message
-$mail-&gt;from = "adresse@email";              // Adresse email de l'expediteur (optionnel)
-$mail-&gt;headers = "Date: ";  // Entetes supplementaires (optionnel)
-$mail-&gt;attach("$fichier", "test.jpg");      // fichier attache (optionnel)
+// parameters
+$mail-&gt;from    = "Sender" &lt;sender@yourdomain.com&gt; ;
+$mail-&gt;to      = "Recipient" &lt;recipient@yourdomain.com&gt; ;
+$mail-&gt;subject = "Your Mail Subject" ;
+$mail-&gt;body    = "Your Mail Message." ;
+$mail-&gt;attach("/path/to/your/attachment.jpg", "NameOfYourAttachment.jpg") ;
 
-// envoi du message
+// send!
 $mail-&gt;send() ;</code></pre>
 <h3>Sponsorship</h3>
 <p>If this project helps you reduce time to develop, you can give me a cup of coffee ☕️ :-)</p>
@@ -242,7 +241,7 @@ $mail-&gt;send() ;</code></pre>
  * @see https://github.com/JV-conseil-Internet-Consulting/dkim-php-mail-signature
  * @see https://packagist.org/packages/jv-conseil/dkim-php-mail-signature
  * @license BSD 3-Clause License, Copyright (c) 2019, JV conseil – Internet Consulting, All rights reserved.
- * @version v1.2.1
+ * @version v1.2.2
  */
 
 
@@ -251,10 +250,10 @@ require_once __DIR__ . &#039;/../vendor/autoload.php&#039; ; // Autoload files u
 
 use JVconseil\DkimPhpMailSignature\DKIMmail ;
 
-$mail = new DKIMmail() ;
+$mail = new DKIMmail(__DIR__ . &#039;/../config/config.sample.inc.php&#039;) ;
 
 // YOUR E-MAIL
-$mail-&gt;to = &#039;recipient@&#039; . $config-&gt;domain ;
+$mail-&gt;to = &#039;&quot;Recipient&quot; &lt;recipient@&#039; . $config-&gt;domain . &#039;&gt;&#039; ;
 
 $mail-&gt;from = &#039;&quot;Sender&quot; &lt;sender@&#039; . $mail-&gt;config-&gt;domain . &#039;&gt;&#039; ;
 
@@ -264,11 +263,15 @@ $mail-&gt;body =
 &#039;&lt;html&gt;
 	&lt;header&gt;&lt;/header&gt;
 	&lt;body&gt;
-		Hello, this a DKIM e-mail test
+		&lt;p&gt;Hello,&lt;/p&gt;
+		
+		&lt;p&gt;This a &lt;b&gt;DKIM&lt;/b&gt; e-mail test with an attachment.&lt;/p&gt;
+
+		&lt;p&gt;Cheers,&lt;br&gt;&#039; . htmlspecialchars($mail-&gt;from) . &#039;&lt;/p&gt;
 	&lt;/body&gt;
 &lt;/html&gt;&#039;;
 
-$mail-&gt;set_html_format() ;
+$mail-&gt;attach(__DIR__ . &#039;/SendMail.attachment.sample.pdf&#039;, &#039;SendMail.attachment.sample.pdf&#039;) ;
 
 try {
 	if ($mail-&gt;send() == true) {
@@ -298,7 +301,6 @@ try {
                         <section class="row-fluid public">
                             <section class="span4">
                                                                     <a href="../classes/JVconseil.DkimPhpMailSignature.DKIMmail.html#method___construct" class="">__construct()</a><br />
-                                                                    <a href="../classes/JVconseil.DkimPhpMailSignature.DKIMmail.html#method_set_html_format" class="">set_html_format()</a><br />
                                                                     <a href="../classes/JVconseil.DkimPhpMailSignature.DKIMmail.html#method_attach" class="">attach()</a><br />
                                                                     <a href="../classes/JVconseil.DkimPhpMailSignature.DKIMmail.html#method_build_message" class="">build_message()</a><br />
                                                                     <a href="../classes/JVconseil.DkimPhpMailSignature.DKIMmail.html#method_build_multipart" class="">build_multipart()</a><br />
@@ -311,6 +313,7 @@ try {
                                                                     <a href="../classes/JVconseil.DkimPhpMailSignature.DKIMmail.html#property_subject" class="">$subject</a><br />
                                                                     <a href="../classes/JVconseil.DkimPhpMailSignature.DKIMmail.html#property_body" class="">$body</a><br />
                                                                     <a href="../classes/JVconseil.DkimPhpMailSignature.DKIMmail.html#property_is_html" class="">$is_html</a><br />
+                                                                    <a href="../classes/JVconseil.DkimPhpMailSignature.DKIMmail.html#property_return_receipt" class="">$return_receipt</a><br />
                                                                     <a href="../classes/JVconseil.DkimPhpMailSignature.DKIMmail.html#property_parts" class="">$parts</a><br />
                                                             </section>
                             <section class="span4">
@@ -386,7 +389,7 @@ try {
                                 version
                             </th>
                             <td>
-                                                                    <p>v1.2.1</p>
+                                                                    <p>v1.2.2</p>
                                                             </td>
                         </tr>
                                         </table>
@@ -548,6 +551,30 @@ try {
 
                                     <div class="row-fluid">
         <div class="span8 content class">
+            <a id="property_return_receipt" name="property_return_receipt" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$return_receipt</h3>
+                <pre class="signature">$return_receipt : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
             <a id="property_parts" name="property_parts" class="anchor"></a>
             <article class="property">
                 <h3 class="public ">$parts</h3>
@@ -616,40 +643,6 @@ try {
                                                     <tr>
                                 <td></td>
                                 <td>$_config_file </td>
-                                <td></td>
-                            </tr>
-                                            </table>
-                
-                
-                				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_set_html_format" name="method_set_html_format" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">set_html_format()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">set_html_format(  <span class="argument">$html = true</span>) </pre>
-                <p><em></em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td></td>
-                                <td>$html </td>
                                 <td></td>
                             </tr>
                                             </table>
@@ -802,16 +795,16 @@ try {
             <article class="method">
                 <h3 class="public ">send()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">send(  <span class="argument">$test = false</span>) </pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">send(string  <span class="argument">$test = false</span>) </pre>
+                <p><em>Send the mail</em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td></td>
+                                <td>string</td>
                                 <td>$test </td>
-                                <td></td>
+                                <td><p>= true : do not send the email but displays the command</p></td>
                             </tr>
                                             </table>
                 
@@ -880,7 +873,7 @@ try {
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on November 18th, 2019 at 23:43.
+                    on November 19th, 2019 at 16:32.
                 </section>
             </section>
         </section>
