@@ -128,6 +128,25 @@ $config->domain = "mynewdomain.name" ;
 $config->domain ; // => "mynewdomain.name" ;
 ```
 
+# Introducing DKIMmail class
+
+> 📬 Stand-alone class to send DKIM signed emails with a 2048 bit private key hashed with SHA-256 algorithm.
+
+```
+// init
+$mail = new DKIMmail('/www/inc/config/jv-conseil/dkim-php-mail-signature/config.inc.php') ;
+
+// parameters
+$mail->from    = "Sender" <sender@yourdomain.com> ;
+$mail->to      = "Recipient" <recipient@yourdomain.com> ;
+$mail->subject = "Your Mail Subject" ;
+$mail->body    = "Your Mail Message." ;
+$mail->attach("/path/to/your/attachment.jpg", "NameOfYourAttachment.jpg") ;
+
+// send!
+$mail->send() ;
+```
+
 # Documentation 
 
 Documentation is [available online](https://jv-conseil-internet-consulting.github.io/dkim-php-mail-signature/classes/JVconseil.DkimPhpMailSignature.DKIMconfig.html), though it may not be quite up to date or match your version exactly.
