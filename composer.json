@@ -1,6 +1,6 @@
 {
     "name": "jv-conseil/dkim-php-mail-signature",
-    "description": "📬 Stand-alone DKIM class to sign your emails with a 2048 bit private key hashed with SHA-256 algorithm.",
+    "description": "🔏 Stand-alone DKIM class to sign your emails with a 2048 bit private key hashed with SHA-256 algorithm.",
     "keywords": ["dkim", "dkim-signature", "dmarc", "dmarc-record", "spf", "spf-record", "composer", "packagist", "php"],
     "type": "library",
     "homepage": "http://www.jv-conseil.net",

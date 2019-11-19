@@ -5,7 +5,7 @@
 [![License BSD 3-Clause](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](LICENSE)
 [![Follow JV conseil – Internet Consulting on Twitter](https://img.shields.io/twitter/follow/JVconseil.svg?style=social&logo=twitter)](https://twitter.com/JVconseil)
 
-> 📬 Stand-alone DKIM class to sign your emails with a 2048 bit private key hashed with SHA-256 algorithm.
+> 🔏 Stand-alone DKIM class to sign your emails with a 2048 bit private key hashed with SHA-256 algorithm.
 
 ![DkimPhpMailSignature](https://user-images.githubusercontent.com/8126807/69017623-83495b80-09a8-11ea-8eee-757594d4e6ab.png)
 
