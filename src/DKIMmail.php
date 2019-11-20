@@ -71,7 +71,7 @@ class DKIMmail {
     if (!$ctype) $ctype = mime_content_type($message) ;
 		
 		$encode = 'base64';
-    if (in_array($ctype, array('text/plain','text/html'))) $encode = '7bit';      
+    if (in_array($ctype, array('text/plain','text/html'))) $encode = '7bit' ;    
 
     $this->parts[] = array(
 		'ctype' 	=> $ctype,

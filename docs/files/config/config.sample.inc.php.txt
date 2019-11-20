@@ -22,7 +22,7 @@
  * openssl genrsa -des3 -out private.pem 2048
  * ```
  * 
- * Enter your **Pass Phrase*and save it for editing your `config.inc.php` file in the next step.
+ * Enter your **Pass Phrase** and save it for editing your `config.inc.php` file in the next step.
  * 
  * Then retrieve your **public key**:
  * ```
