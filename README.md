@@ -120,7 +120,7 @@ Now you can drop `.sample` in the filename and start editing it:
 - **passphrase**: your pass phrase used to generate your keys e.g.: myPassPhrase.
 - ... other parameters can be omitted.
 
-## Usage
+## Simple Use
 
 Sample lines to import into your mail code to start signing with DKIM:
 
