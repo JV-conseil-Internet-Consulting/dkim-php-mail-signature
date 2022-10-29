@@ -9,7 +9,7 @@
 
 ![DkimPhpMailSignature](https://user-images.githubusercontent.com/8126807/69017623-83495b80-09a8-11ea-8eee-757594d4e6ab.png)
 
-# Usage
+## Usage
 
 Sample lines to import into your mail code to start signing with DKIM:
 
@@ -34,7 +34,7 @@ $signed_headers = $sign->get_signed_headers($to, $subject, $message, $headers) ;
 mail($to, $subject, $message, $signed_headers.$headers) ;
 ```
 
-# Installation
+## Installation
 
 > Step by Step guide to generate your encryption keys and populate them through your DNS records.
 
@@ -139,7 +139,7 @@ $config->domain = "mynewdomain.name" ;
 $config->domain ; // => "mynewdomain.name" ;
 ```
 
-# Introducing DKIMmail class
+## Introducing DKIMmail class
 
 > 📬 Stand-alone class to send DKIM signed emails with a 2048 bit private key hashed with SHA-256 algorithm.
 
@@ -158,7 +158,7 @@ $mail->attach("/path/to/your/attachment.jpg", "NameOfYourAttachment.jpg") ;
 $mail->send() ;
 ```
 
-# Documentation
+## Documentation
 
 Documentation is [available online](https://jv-conseil-internet-consulting.github.io/dkim-php-mail-signature/classes/JVconseil.DkimPhpMailSignature.DKIMconfig.html), though it may not be quite up to date or match your version exactly.
 
@@ -170,7 +170,7 @@ php ~/vendor/bin/phpdoc -d ~/dkim-php-mail-signature/ -t ~/dkim-php-mail-signatu
 
 You will need to have [phpDocumentor](https://www.phpdoc.org) installed.
 
-# Sponsorship
+## Sponsorship
 
 If this project helps you reduce time to develop, you can give me a cup of coffee ☕️ :-)
 
