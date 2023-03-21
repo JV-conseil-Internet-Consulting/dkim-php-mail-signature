@@ -1,52 +1,53 @@
 <?php
+
 /**
  * Simple example test with config file accessed through a var.
- * 
+ *
  * To test this example enter in Terminal this command line:
  * ```
  * php ~/dkim-php-mail-signature/examples/SignSimple.php
- * ``` 
- * 
+ * ```
+ *
  * @author JV conseil — Internet Consulting <contact@jv-conseil.net>
  * @see http://www.jv-conseil.net
  * @see https://github.com/JV-conseil-Internet-Consulting/dkim-php-mail-signature
  * @see https://packagist.org/packages/jv-conseil/dkim-php-mail-signature
- * @license BSD 3-Clause License, Copyright (c) 2019, JV conseil – Internet Consulting, All rights reserved.
+ * @license EUPL-1.2 license, Copyright (c) 2019-2023 JV conseil – Internet Consulting, All rights reserved.
  * @version v1.2.2
  */
 
 
 /** Call Composer Package JVconseil\DkimPhpMailSignature */
-require_once __DIR__ . '/../vendor/autoload.php' ; // Autoload files using Composer autoload
+require_once __DIR__ . '/../vendor/autoload.php'; // Autoload files using Composer autoload
 
-use JVconseil\DkimPhpMailSignature\DKIMsign ;
+use JVconseil\DkimPhpMailSignature\DKIMsign;
 
 /** @var string $config after setting up the config file and your DNS records :*/
-$config = include_once(__DIR__ . '/../config/config.sample.inc.php') ;
+$config = include_once(__DIR__ . '/../config/config.sample.inc.php');
 
 
 // YOUR E-MAIL
-$to = 'recipient@' . $config['domain'] ;
+$to = 'recipient@' . $config['domain'];
 
-$subject = 'DKIM e-mail test for domain ' . $config['domain'] ;
+$subject = 'DKIM e-mail test for domain ' . $config['domain'];
 
 $headers =
-'MIME-Version: 1.0
+	'MIME-Version: 1.0
 From: "Sender" <sender@' . $config['domain'] . '>
 Content-type: text/html; charset=utf8';
 
 $message =
-'<html>
+	'<html>
 	<header></header>
 	<body>
 		Hello, this a DKIM e-mail test
 	</body>
 </html>';
-	
+
 
 // Make sure linefeeds are in CRLF format - it is essential for signing
-$message = preg_replace('/(?<!\r)\n/', "\r\n", $message) ;
-$headers = preg_replace('/(?<!\r)\n/', "\r\n", $headers) ;
+$message = preg_replace('/(?<!\r)\n/', "\r\n", $message);
+$headers = preg_replace('/(?<!\r)\n/', "\r\n", $headers);
 
 
 // 1) YOU USUALLY DID :
@@ -81,17 +82,17 @@ $signature = new DKIMsign(
 	$config['selector']
 );
 
-$signed_headers = $signature -> get_signed_headers($to, $subject, $message, $headers) ;
+$signed_headers = $signature->get_signed_headers($to, $subject, $message, $headers);
 
 try {
-	if (mail($to, $subject, $message, $signed_headers.$headers) == true) {
+	if (mail($to, $subject, $message, $signed_headers . $headers) == true) {
 		// header('Content-Type: text/plain') ;
-		header('Content-Type: text/plain') ;
-		echo $signed_headers . $headers . "\r\n" ;
-		echo 'To: ' . $to . "\r\n" ;
-		echo 'Subject: ' . $subject . "\r\n" ;
-		echo $message . "\r\n" ;
+		header('Content-Type: text/plain');
+		echo $signed_headers . $headers . "\r\n";
+		echo 'To: ' . $to . "\r\n";
+		echo 'Subject: ' . $subject . "\r\n";
+		echo $message . "\r\n";
 	}
 } catch (Exception $e) {
-    die('Caught exception: ' . $e->getMessage() . "\r\n") ;
+	die('Caught exception: ' . $e->getMessage() . "\r\n");
 }

@@ -11,7 +11,7 @@
     <link href="../css/font-awesome.min.css" rel="stylesheet">
     <link href="../css/prism.css" rel="stylesheet" media="all"/>
     <link href="../css/template.css" rel="stylesheet" media="all"/>
-    
+
     <!--[if lt IE 9]>
     <script src="../js/html5.js"></script>
     <![endif]-->
@@ -168,7 +168,7 @@
             <div id="namespace-83634129" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
-                    
+
                     <ul>
                                                                                                     <li class="class"><a href="../classes/JVconseil.DkimPhpMailSignature.DKIMconfig.html">DKIMconfig</a></li>
                                                     <li class="class"><a href="../classes/JVconseil.DkimPhpMailSignature.DKIMmail.html">DKIMmail</a></li>
@@ -179,7 +179,7 @@
         </div>
     </div>
 
-                    
+
                     <ul>
                                                                                             </ul>
                 </div>
@@ -187,7 +187,7 @@
         </div>
     </div>
 
-                    
+
                     <ul>
                                                                                             </ul>
                 </div>
@@ -259,63 +259,63 @@ $config-&gt;domain ; // =&gt; "mynewdomain.name" ;</code></pre>
 <h3>Sponsorship</h3>
 <p>If this project helps you reduce time to develop, you can give me a cup of coffee ☕️ :-)</p>
 <p><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=P3DGL6EANDY96&amp;source=url"><img src="https://www.paypalobjects.com/en_US/FR/i/btn/btn_donateCC_LG.gif" alt="Donate with PayPal" /></a></p>
-                    
+
                                                                         <h3>Examples</h3>
                                                                             <h4>Here is config.sample.inc.php:</h4>
                             <pre class="pre-scrollable">&lt;?php
-/** 
+/**
  * The File to store your Configuration paramaters.
- * 
- * Before starting you should make a copy of folder `config/` and store it outside your `vendor/` Composer repository in a non-public area of your website e.g.: 
- * 
+ *
+ * Before starting you should make a copy of folder `config/` and store it outside your `vendor/` Composer repository in a non-public area of your website e.g.:
+ *
  * ```
  * /www/inc/config/jv-conseil/dkim-php-mail-signature/
  * ```
- * 
+ *
  * Failing to do so will expose you to lose all your settings in case of a future Composer udpate.
- * 
+ *
  * ## Generate your Public &amp; Private Encryption keys
- * 
+ *
  * In Terminal enter this command line to start working under the path of your `config/` folder:
  * ```
  * cd /www/inc/config/jv-conseil/dkim-php-mail-signature/
  * ```
- * 
+ *
  * In Terminal enter this command line to generate a new **private 2048 bit encryption key**:
  * ```
  * openssl genrsa -des3 -out private.pem 2048
  * ```
- * 
+ *
  * Enter your **Pass Phrase** and save it for editing your `config.inc.php` file in the next step.
- * 
+ *
  * Then retrieve your **public key**:
  * ```
  * openssl rsa -in private.pem -out public.pem -outform PEM -pubout
  * ```
- * 
+ *
  * _You can delete the two originals `*.pem` file keys stored in the `config/` folder if they create a conflict in the creation process of your keys._
- * 
- * 
+ *
+ *
  * # Sponsorship
- * 
+ *
  * If this project helps you reduce time to develop, you can give me a cup of coffee ☕️ :-)
- * 
+ *
  * [![Donate with PayPal](https://www.paypalobjects.com/en_US/FR/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=P3DGL6EANDY96&amp;source=url)
- * 
+ *
  * @var string domain: domain name e.g.: google.com.
  * @var string selector: selector used in your DKIM DNS record, e.g.: selector._domainkey.MAIL_DKIM_DOMAIN
  * @var string passphrase: your pass phrase used to generate your keys e.g.: myPassPhrase.
- * @var string private_key: string retrieved from private.pem file. 
+ * @var string private_key: string retrieved from private.pem file.
  * @var string public_key: string retrieved from public.pem file.
- * @var string identity: Allowed user, defaults is &quot;@&lt;MAIL_DKIM_DOMAIN&gt;&quot;, meaning anybody in the MAIL_DKIM_DOMAIN domain. Ex: &#039;admin@mydomain.tld&#039;. You&#039;ll never have to use this unless you do not control the &quot;From&quot; value in the e-mails you send. 
- * 
+ * @var string identity: Allowed user, defaults is &quot;@&lt;MAIL_DKIM_DOMAIN&gt;&quot;, meaning anybody in the MAIL_DKIM_DOMAIN domain. Ex: &#039;admin@mydomain.tld&#039;. You&#039;ll never have to use this unless you do not control the &quot;From&quot; value in the e-mails you send.
+ *
  * @return array an array of configuration paramaters.
- * 
+ *
  * @author JV conseil — Internet Consulting &lt;contact@jv-conseil.net&gt;
  * @see http://www.jv-conseil.net
  * @see https://github.com/JV-conseil-Internet-Consulting/dkim-php-mail-signature
  * @see https://packagist.org/packages/jv-conseil/dkim-php-mail-signature
- * @license BSD 3-Clause License, Copyright (c) 2019, JV conseil – Internet Consulting, All rights reserved.
+ * @license EUPL-1.2 license, Copyright (c) 2019-2023 JV conseil – Internet Consulting, All rights reserved.
  * @version v1.2.2
  */
 return array(
@@ -326,7 +326,7 @@ return array(
     &#039;public_key&#039;    =&gt;  file_get_contents(&#039;public.pem&#039;, true) ,
     &#039;identity&#039;      =&gt;  NULL,
 ) ;</pre>
-                                                                
+
                     <section id="summary">
                         <h2>Summary</h2>
                         <section class="row-fluid heading">
@@ -378,8 +378,8 @@ return array(
                     </section>
                 </div>
                 <aside class="span4 detailsbar">
-                                        
-                    
+
+
                     <dl>
                         <dt>File</dt>
                             <dd><a href="../files/src.DKIMconfig.html"><div class="path-wrapper">src/DKIMconfig.php</div></a></dd>
@@ -390,14 +390,14 @@ return array(
                                                                                                                                                                     <div class="namespace-wrapper">\JVconseil\DkimPhpMailSignature\DKIMconfig</div>
                             </dd>
 
-                        
-                        
-                        
+
+
+
                                                                             <dt>See also</dt>
                                                                                         <dd><a href="http://www.jv-conseil.net"><span class="namespace-wrapper">http://www.jv-conseil.net</span></a></dd>
                                                             <dd><a href=""><span class="namespace-wrapper">https://github.com/JV-conseil-Internet-Consulting/dkim-php-mail-signature</span></a></dd>
                                                             <dd><a href=""><span class="namespace-wrapper">https://packagist.org/packages/jv-conseil/dkim-php-mail-signature</span></a></dd>
-                                                    
+
                                                                         </dl>
                     <h2>Tags</h2>
                     <table class="table table-condensed">
@@ -422,7 +422,7 @@ return array(
                                 license
                             </th>
                             <td>
-                                                                    <p>BSD 3-Clause License, Copyright (c) 2019, JV conseil – Internet Consulting, All rights reserved.</p>
+                                                                    <p>EUPL-1.2 license, Copyright (c) 2019-2023 JV conseil – Internet Consulting, All rights reserved.</p>
                                                             </td>
                         </tr>
                                             <tr>
@@ -437,7 +437,7 @@ return array(
                 </aside>
             </div>
 
-                        
+
                                     <a id="properties" name="properties"></a>
             <div class="row-fluid">
                 <div class="span8 content class">
@@ -453,7 +453,7 @@ return array(
                 <h3 class="protected ">$_config_file</h3>
                 <pre class="signature">$_config_file : string</pre>
                 <p><em></em></p>
-                
+
 
                                 <h4>Type</h4>
                 string
@@ -477,7 +477,7 @@ return array(
                 <h3 class="private ">$_data</h3>
                 <pre class="signature">$_data : array</pre>
                 <p><em></em></p>
-                
+
 
                                 <h4>Type</h4>
                 array
@@ -494,7 +494,7 @@ return array(
         </aside>
     </div>
 
-                            
+
                                     <a id="methods" name="methods"></a>
             <div class="row-fluid">
                 <div class="span8 content class"><h2>Methods</h2></div>
@@ -509,7 +509,7 @@ return array(
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
                 <pre class="signature" style="margin-right: 54px;">__construct(  <span class="argument">$_config_file</span>) : object</pre>
                 <p><em></em></p>
-                
+
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
@@ -519,12 +519,12 @@ return array(
                                 <td></td>
                             </tr>
                                             </table>
-                
-                
+
+
                                     <h4>Returns</h4>
                     object
                                             &mdash; <p>populated items to DKIMconfig class</p>
-                                    				
+
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -546,7 +546,7 @@ return array(
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
                 <pre class="signature" style="margin-right: 54px;">__set(  <span class="argument">$property</span>,   <span class="argument">$value</span>) : string</pre>
                 <p><em></em></p>
-                
+
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
@@ -561,12 +561,12 @@ return array(
                                 <td></td>
                             </tr>
                                             </table>
-                
-                
+
+
                                     <h4>Returns</h4>
                     string
                                             &mdash; <p>magic methods!</p>
-                                    				
+
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -588,7 +588,7 @@ return array(
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
                 <pre class="signature" style="margin-right: 54px;">__get(  <span class="argument">$property</span>) : string</pre>
                 <p><em></em></p>
-                
+
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
@@ -598,12 +598,12 @@ return array(
                                 <td></td>
                             </tr>
                                             </table>
-                
-                
+
+
                                     <h4>Returns</h4>
                     string
                                             &mdash; <p>the property value</p>
-                                    				
+
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -625,7 +625,7 @@ return array(
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
                 <pre class="signature" style="margin-right: 54px;">_include_config_file(  <span class="argument">$_config_file = null</span>) : array</pre>
                 <p><em></em></p>
-                
+
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
@@ -635,12 +635,12 @@ return array(
                                 <td></td>
                             </tr>
                                             </table>
-                
-                
+
+
                                     <h4>Returns</h4>
                     array
                                             &mdash; <p>an array of configuration paramaters stored in $_config_file</p>
-                                    				
+
                             </article>
         </div>
         <aside class="span4 detailsbar">

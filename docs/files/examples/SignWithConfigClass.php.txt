@@ -1,17 +1,17 @@
 <?php
 /**
  * Class example with config file accessed through a class.
- * 
+ *
  * To test this example enter in Terminal this command line:
  * ```
  * php ~/dkim-php-mail-signature/examples/SignWithConfigClass.php
- * ``` 
- * 
+ * ```
+ *
  * @author JV conseil — Internet Consulting <contact@jv-conseil.net>
  * @see http://www.jv-conseil.net
  * @see https://github.com/JV-conseil-Internet-Consulting/dkim-php-mail-signature
  * @see https://packagist.org/packages/jv-conseil/dkim-php-mail-signature
- * @license BSD 3-Clause License, Copyright (c) 2019, JV conseil – Internet Consulting, All rights reserved.
+ * @license EUPL-1.2 license, Copyright (c) 2019-2023 JV conseil – Internet Consulting, All rights reserved.
  * @version v1.2.2
  */
 
@@ -43,7 +43,7 @@ $message =
 		Hello, this a DKIM e-mail test
 	</body>
 </html>';
-	
+
 
 // Make sure linefeeds are in CRLF format - it is essential for signing
 $message = preg_replace('/(?<!\r)\n/', "\r\n", $message) ;

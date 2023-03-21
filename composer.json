@@ -4,7 +4,7 @@
     "keywords": ["dkim", "dkim-signature", "dmarc", "dmarc-record", "spf", "spf-record", "composer", "packagist", "php"],
     "type": "library",
     "homepage": "http://www.jv-conseil.net",
-    "license": "BSD-3-Clause",
+    "license": "EUPL-1.2",
     "authors": [
         {
             "name": "JV conseil — Internet Consulting",
