@@ -32,7 +32,7 @@ $mail->from = '"Sender" <sender@' . $mail->config->domain . '>';
 $mail->subject = 'DKIM e-mail test for domain ' . $mail->config->domain;
 
 $mail->body =
-	'<html>
+  '<html>
 	<header></header>
 	<body>
 		<p>Hello,</p>
@@ -46,13 +46,13 @@ $mail->body =
 $mail->attach(__DIR__ . '/SendMail.attachment.sample.pdf', 'SendMail.attachment.sample.pdf');
 
 try {
-	if ($mail->send() == true) {
-		// header('Content-Type: text/plain') ;
-		echo $mail->signed_headers . $mail->headers . "\r\n";
-		echo 'To: ' . $mail->to . "\r\n";
-		echo 'Subject: ' . $mail->subject . "\r\n";
-		echo $mail->body . "\r\n";
-	}
+  if ($mail->send() == true) {
+    // header('Content-Type: text/plain') ;
+    echo $mail->signed_headers . $mail->headers . "\r\n";
+    echo 'To: ' . $mail->to . "\r\n";
+    echo 'Subject: ' . $mail->subject . "\r\n";
+    echo $mail->body . "\r\n";
+  }
 } catch (Exception $e) {
-	die('Caught exception: ' . $e->getMessage() . "\r\n");
+  die('Caught exception: ' . $e->getMessage() . "\r\n");
 }

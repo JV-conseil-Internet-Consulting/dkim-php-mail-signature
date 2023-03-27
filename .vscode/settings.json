@@ -16,11 +16,30 @@
   "[javascript]": {
     "editor.defaultFormatter": "vscode.typescript-language-features"
   },
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
   "[jsonc]": {
     "editor.defaultFormatter": "vscode.json-language-features"
   },
   "[markdown]": {
     "editor.defaultFormatter": "yzhang.markdown-all-in-one"
+  },
+  "[php]": {
+    "editor.defaultFormatter": "DEVSENSE.phptools-vscode"
+  },
+  "files.associations": {
+    "*.inc": "php"
+  },
+  "php.validate.enable": true,
+  "php.validate.executablePath": "/opt/homebrew/bin/php",
+  "php.suggest.basic": true,
+  "php.version": "8.2.4",
+  "php.problems.exclude": {
+    "/": [
+      406
+    ],
+    "vendor/": true,
   },
   "scss.format.braceStyle": "collapse",
   "scss.format.enable": false,

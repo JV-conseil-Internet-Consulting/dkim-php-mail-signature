@@ -118,7 +118,8 @@ class DKIMconfig
   /** @return array an array of configuration paramaters stored in $_config_file */
   private function _include_config_file($_config_file = null)
   {
-    if (!$_config_file) $_config_file = __DIR__ . '/../config/config.sample.inc.php';
+    if (!$_config_file)
+      $_config_file = __DIR__ . '/../config/config.sample.inc.php';
     if (file_exists($_config_file))
       return include_once($_config_file);
     else

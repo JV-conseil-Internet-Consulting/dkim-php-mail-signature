@@ -4,7 +4,7 @@ root = true
 
 [*]
 indent_style = space
-indent_size = 4
+indent_size = 2
 insert_final_newline = true
 trim_trailing_whitespace = true
 end_of_line = lf
@@ -22,14 +22,6 @@ indent_size = 2
 [*.json]
 indent_size = 2
 insert_final_newline = ignore
-
-[**/admin/vendor/**]
-indent_style = ignore
-indent_size = ignore
-
-[**/vendor/**]
-indent_style = ignore
-indent_size = ignore
 
 # Minified JavaScript files shouldn't be changed
 [**.min.js]
@@ -52,7 +44,7 @@ indent_size = 2
 
 # Google Shell Style Guide 2.02
 # https://google.github.io/styleguide/shellguide.html#s5-formatting
-[{,.bash*,.env,*.sh}]
+[{,.bash*,.env,*.conf,*.sh}]
 indent_style = space
 indent_size = 2
 max_line_length = 80

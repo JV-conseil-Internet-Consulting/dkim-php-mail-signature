@@ -1,36 +1,46 @@
 {
-    "name": "jv-conseil/dkim-php-mail-signature",
-    "description": "🔏 Stand-alone DKIM class to sign your emails with a 2048 bit private key hashed with SHA-256 algorithm.",
-    "keywords": ["dkim", "dkim-signature", "dmarc", "dmarc-record", "spf", "spf-record", "composer", "packagist", "php"],
-    "type": "library",
-    "homepage": "http://www.jv-conseil.net",
-    "license": "EUPL-1.2",
-    "authors": [
-        {
-            "name": "JV conseil — Internet Consulting",
-            "email": "contact@jv-conseil.net",
-            "homepage": "http://www.jv-conseil.net",
-            "role": "Developer"
-        }
-    ],
-    "minimum-stability": "dev",
-    "require": {
-		"php": ">=5.6.37"
-    },
-    "require-dev": {
-        "phpdocumentor/phpdocumentor": "2.*"
-    },
-    "autoload": {
-        "psr-4": {
-            "JVconseil\\DkimPhpMailSignature\\": "src/"
-        }
-    },
-    "support": {
-        "issues": "https://github.com/JV-conseil-Internet-Consulting/dkim-php-mail-signature/issues",
-        "docs": "https://jv-conseil-internet-consulting.github.io/dkim-php-mail-signature/classes/JVconseil.DkimPhpMailSignature.DKIMconfig.html",
-        "wiki": "https://github.com/JV-conseil-Internet-Consulting/dkim-php-mail-signature/wiki"
-    },
-    "scripts": {
-        "test": "php examples/SignWithConfigClass.php"
+  "name": "jv-conseil/dkim-php-mail-signature",
+  "description": "🔏 Stand-alone DKIM class to sign your emails with a 2048 bit private key hashed with SHA-256 algorithm.",
+  "keywords": [
+    "dkim",
+    "dkim-signature",
+    "dmarc",
+    "dmarc-record",
+    "spf",
+    "spf-record",
+    "composer",
+    "packagist",
+    "php"
+  ],
+  "type": "library",
+  "homepage": "http://www.jv-conseil.net",
+  "license": "EUPL-1.2",
+  "authors": [
+    {
+      "name": "JV conseil — Internet Consulting",
+      "email": "contact@jv-conseil.net",
+      "homepage": "http://www.jv-conseil.net",
+      "role": "Developer"
     }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "php": ">=5.6.37"
+  },
+  "require-dev": {
+    "phpdocumentor/phpdocumentor": "2.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "JVconseil\\DkimPhpMailSignature\\": "src/"
+    }
+  },
+  "support": {
+    "issues": "https://github.com/JV-conseil-Internet-Consulting/dkim-php-mail-signature/issues",
+    "docs": "https://jv-conseil-internet-consulting.github.io/dkim-php-mail-signature/classes/JVconseil.DkimPhpMailSignature.DKIMconfig.html",
+    "wiki": "https://github.com/JV-conseil-Internet-Consulting/dkim-php-mail-signature/wiki"
+  },
+  "scripts": {
+    "test": "php examples/SignWithConfigClass.php"
+  }
 }

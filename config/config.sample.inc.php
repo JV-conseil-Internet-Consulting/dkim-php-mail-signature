@@ -56,10 +56,10 @@
  * @version v1.2.2
  */
 return array(
-    'domain'        =>  'example.com',
-    'selector'      =>  'selector',
-    'passphrase'    =>  'myPassPhrase',
-    'private_key'   =>  file_get_contents('private.pem', true),
-    'public_key'    =>  file_get_contents('public.pem', true),
-    'identity'      =>  NULL,
+  'domain' => 'example.com',
+  'selector' => 'selector',
+  'passphrase' => 'myPassPhrase',
+  'private_key' => file_get_contents('private.pem', true),
+  'public_key' => file_get_contents('public.pem', true),
+  'identity' => NULL,
 );

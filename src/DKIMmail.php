@@ -1,5 +1,4 @@
 <?php
-
 /**
  * DKIMmail class
  *
@@ -8,6 +7,7 @@
  * @see https://github.com/JV-conseil-Internet-Consulting/dkim-php-mail-signature
  * @see https://packagist.org/packages/jv-conseil/dkim-php-mail-signature
  * @license EUPL-1.2 license, Copyright (c) 2019-2023 JV conseil – Internet Consulting, All rights reserved.
+ * @license BSD 3-Clause License, Copyright (c) 2019, JV conseil – Internet Consulting, All rights reserved.
  * @version v1.2.2
  */
 
@@ -44,9 +44,9 @@ namespace JVconseil\DkimPhpMailSignature;
  * @see http://www.jv-conseil.net
  * @see https://github.com/JV-conseil-Internet-Consulting/dkim-php-mail-signature
  * @see https://packagist.org/packages/jv-conseil/dkim-php-mail-signature
- * @license EUPL-1.2 license, Copyright (c) 2019-2023 JV conseil – Internet Consulting, All rights reserved.
  * @version v1.2.2
  */
+#[\AllowDynamicProperties]
 class DKIMmail
 {
 
@@ -72,16 +72,18 @@ class DKIMmail
   function attach($message, $name, $ctype = '')
   {
 
-    if (!$ctype) $ctype = mime_content_type($message);
+    if ($message && !$ctype)
+      $ctype = mime_content_type(str_replace(chr(0), '', $message));
 
     $encode = 'base64';
-    if (in_array($ctype, array('text/plain', 'text/html'))) $encode = '7bit';
+    if (in_array($ctype, array('text/plain', 'text/html')))
+      $encode = '7bit';
 
     $this->parts[] = array(
-      'ctype'   => $ctype,
+      'ctype' => $ctype,
       'message' => $message,
-      'encode'   => $encode,
-      'name'     => $name
+      'encode' => $encode,
+      'name' => $name
     );
   }
 
@@ -108,21 +110,23 @@ class DKIMmail
     // Each line of characters SHOULD be no more than 78 characters, excluding the CRLF
     // if ($encoding == 'base64') $message = chunk_split(base64_encode($message)) ;
     // if ($encoding == 'base64') $message = chunk_split(base64_encode($message), 64, PHP_EOL) ;
-    if ($encoding == 'base64') $message = chunk_split(base64_encode($message), 78, "\r\n");
-    return  $mime . "\r\n" . $message;
+    if ($encoding == 'base64')
+      $message = chunk_split(base64_encode($message), 78, "\r\n");
+    return $mime . "\r\n" . $message;
   }
 
   // compose le message MIME
   // utilisee depuis send()
   function build_multipart($type = 'mixed', $charset = 'UTF-8', $boundary = '')
   {
-    if (!$boundary) $boundary = "DKIMmail-Part-" . md5(uniqid(time()));
+    if (!$boundary)
+      $boundary = "DKIMmail-Part-" . md5(uniqid(time()));
     // $multipart = "Content-Type: multipart/$type;boundary=$boundary\r\n--$boundary";
     $multipart = "\r\n--$boundary";
     for ($i = sizeof($this->parts) - 1; $i >= 0; $i--) {
       $multipart .= $this->build_message($this->parts[$i], $charset) . "\r\n--$boundary";
     }
-    return $multipart .=  "--\r\n";
+    return $multipart .= "--\r\n";
   }
 
   /**
@@ -133,8 +137,10 @@ class DKIMmail
   {
     $mime = '';
     $charset = 'UTF-8';
-    if (!empty($this->from)) $mime .= "From: " . $this->from . "\r\n";
-    if (!empty($this->headers)) $mime .= $this->headers . "\r\n";
+    if (!empty($this->from))
+      $mime .= "From: " . $this->from . "\r\n";
+    if (!empty($this->headers))
+      $mime .= $this->headers . "\r\n";
     $mime .= "Date: " . date("r") . "\r\n";
     $mime .= "X-Mailer: PHP/" . phpversion() . "\r\n"; // entetes supplementaires (optionnel)
     $mime .= "X-Sender: <www." . $this->config->domain . ">\r\n";
@@ -152,26 +158,28 @@ class DKIMmail
     $mime .= "MIME-Version: 1.0 \r\n";
 
     $text_type = "text/plain";
-    if ($this->is_html) $text_type = "text/html";
+    if ($this->is_html)
+      $text_type = "text/html";
 
     $boundary = "DKIMmail-Part-" . md5(uniqid(time()));
     $mime .= "Content-Type: multipart/mixed; boundary=\"$boundary\"";
-    if (!empty($this->body)) $this->attach($this->body, null, $text_type);
+    if (!empty($this->body))
+      $this->attach($this->body, null, $text_type);
     $body = $this->build_multipart('mixed', $charset, $boundary);
 
     /* Cas des mails avec PJ
     if (count($this->parts) > 0) {
-      if (!empty($this->body)) $this->attach($this->body, "", $text_type) ;
-      $boundary = "DKIMmail-Part-" . md5(uniqid(time())) ;
-      $mime.= "Content-Type: multipart/mixed; boundary=\"$boundary\"";
-      // $mime = $this->build_multipart('mixed', $charset, $boundary) ;
-      // $body = null ;
-      $body = $this->build_multipart('mixed', $charset, $boundary) ;
+    if (!empty($this->body)) $this->attach($this->body, "", $text_type) ;
+    $boundary = "DKIMmail-Part-" . md5(uniqid(time())) ;
+    $mime.= "Content-Type: multipart/mixed; boundary=\"$boundary\"";
+    // $mime = $this->build_multipart('mixed', $charset, $boundary) ;
+    // $body = null ;
+    $body = $this->build_multipart('mixed', $charset, $boundary) ;
     } else { // Cas des mails tous simples
-			$mime.= "Content-Type: $text_type; charset=$charset \r\n";
-			$mime.= "Content-Transfer-Encoding: 7bit \r\n";
-			$mime.= "Content-Disposition: inline \r\n";
-      $body = $this->body ;
+    $mime.= "Content-Type: $text_type; charset=$charset \r\n";
+    $mime.= "Content-Transfer-Encoding: 7bit \r\n";
+    $mime.= "Content-Disposition: inline \r\n";
+    $body = $this->body ;
     }
     */
 
@@ -191,8 +199,11 @@ class DKIMmail
     // envoi du message
     if ($test == false) {
 
-      $additional_parameters = null;
-      return mail($this->to, $this->subject, $this->body, $this->signed_headers . $this->headers, $additional_parameters);
+      // $additional_parameters = null;
+      // return mail($this->to, $this->subject, $this->body, $this->signed_headers . $this->headers, $additional_parameters);
+
+      return mail($this->to, $this->subject, $this->body, $this->signed_headers . $this->headers);
+
     } else {
 
       echo nl2br(htmlentities("
@@ -211,4 +222,6 @@ class DKIMmail
       return false;
     }
   }
-};
+
+}
+;
