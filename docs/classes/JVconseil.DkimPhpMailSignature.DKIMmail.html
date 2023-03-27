@@ -1,215 +1,236 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
-    <meta charset="utf-8"/>
-    <title>API Documentation</title>
-    <meta name="author" content=""/>
-    <meta name="description" content=""/>
 
-    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
-    <link href="../css/font-awesome.min.css" rel="stylesheet">
-    <link href="../css/prism.css" rel="stylesheet" media="all"/>
-    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <meta charset="utf-8" />
+        <title>API Documentation</title>
+        <meta name="author" content="" />
+        <meta name="description" content="" />
 
-    <!--[if lt IE 9]>
+        <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/prism.css" rel="stylesheet" media="all" />
+        <link href="../css/template.css" rel="stylesheet" media="all" />
+
+        <!--[if lt IE 9]>
     <script src="../js/html5.js"></script>
     <![endif]-->
-    <script src="../js/jquery-1.11.0.min.js"></script>
-    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/jquery.smooth-scroll.js"></script>
-    <script src="../js/prism.min.js"></script>
-    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
-    <script type="text/javascript">
-    function loadExternalCodeSnippets() {
-        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
-            var src = pre.getAttribute('data-src');
-            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
-            var language = 'php';
+        <script src="../js/jquery-1.11.0.min.js"></script>
+        <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <script src="../js/jquery.smooth-scroll.js"></script>
+        <script src="../js/prism.min.js"></script>
+        <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+        <script type="text/javascript">
+            function loadExternalCodeSnippets() {
+                Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+                    var src = pre.getAttribute('data-src');
+                    var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+                    var language = 'php';
 
-            var code = document.createElement('code');
-            code.className = 'language-' + language;
+                    var code = document.createElement('code');
+                    code.className = 'language-' + language;
 
-            pre.textContent = '';
+                    pre.textContent = '';
 
-            code.textContent = 'Loading…';
+                    code.textContent = 'Loading…';
 
-            pre.appendChild(code);
+                    pre.appendChild(code);
 
-            var xhr = new XMLHttpRequest();
+                    var xhr = new XMLHttpRequest();
 
-            xhr.open('GET', src, true);
+                    xhr.open('GET', src, true);
 
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState == 4) {
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState == 4) {
 
-                    if (xhr.status < 400 && xhr.responseText) {
-                        code.textContent = xhr.responseText;
+                            if (xhr.status < 400 && xhr.responseText) {
+                                code.textContent = xhr.responseText;
 
-                        Prism.highlightElement(code);
-                    }
-                    else if (xhr.status >= 400) {
-                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
-                    }
-                    else {
-                        code.textContent = '✖ Error: File does not exist or is empty';
-                    }
-                }
-            };
+                                Prism.highlightElement(code);
+                            }
+                            else if (xhr.status >= 400) {
+                                code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                            }
+                            else {
+                                code.textContent = '✖ Error: File does not exist or is empty';
+                            }
+                        }
+                    };
 
-            xhr.send(null);
-        });
-    }
+                    xhr.send(null);
+                });
+            }
 
-    $(document).ready(function(){
-        loadExternalCodeSnippets();
-    });
-    $('#source-view').on('shown', function () {
-        loadExternalCodeSnippets();
-    })
-</script>
+            $(document).ready(function () {
+                loadExternalCodeSnippets();
+            });
+            $('#source-view').on('shown', function () {
+                loadExternalCodeSnippets();
+            })
+        </script>
 
-    <link rel="shortcut icon" href="../images/favicon.ico"/>
-    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
-    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
-    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
-</head>
-<body>
+        <link rel="shortcut icon" href="../images/favicon.ico" />
+        <link rel="apple-touch-icon" href="../images/apple-touch-icon.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png" />
+    </head>
 
-<div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-        <div class="container">
-            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                <i class="icon-ellipsis-vertical"></i>
-            </a>
-            <a class="brand" href="../index.html">API Documentation</a>
+    <body>
 
-            <div class="nav-collapse">
-                <ul class="nav pull-right">
-                                        <li class="dropdown">
-                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
-                            API Documentation <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                                                        <li><a href="../namespaces/JVconseil.html">\JVconseil</a></li>
-                                                    </ul>
-                    </li>
-                                        <li class="dropdown" id="charts-menu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            Charts <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="../graphs/class.html">
-                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+        <div class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <i class="icon-ellipsis-vertical"></i>
+                    </a>
+                    <a class="brand" href="../index.html">API Documentation</a>
+
+                    <div class="nav-collapse">
+                        <ul class="nav pull-right">
+                            <li class="dropdown">
+                                <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b>
                                 </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="../namespaces/JVconseil.html">\JVconseil</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown" id="charts-menu">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="../graphs/class.html">
+                                            <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown" id="reports-menu">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="../reports/errors.html">
+                                            <i class="icon-list-alt"></i>&#160;Errors <span
+                                                class="label label-info pull-right">52</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="../reports/markers.html">
+                                            <i class="icon-list-alt"></i>&#160;Markers <span
+                                                class="label label-info pull-right">0</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="../reports/deprecated.html">
+                                            <i class="icon-list-alt"></i>&#160;Deprecated <span
+                                                class="label label-info pull-right">0</span>
+                                        </a>
+                                    </li>
+                                </ul>
                             </li>
                         </ul>
-                    </li>
-                    <li class="dropdown" id="reports-menu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            Reports <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="../reports/errors.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">52</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="../reports/markers.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="../reports/deprecated.html">
-                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
+                    </div>
+                </div>
             </div>
+            <!--<div class="go_to_top">-->
+            <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+            <!--</div>-->
         </div>
-    </div>
-    <!--<div class="go_to_top">-->
-    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
-    <!--</div>-->
-</div>
 
-<div id="___" class="container-fluid">
-        <section class="row-fluid">
-        <div class="span2 sidebar">
-                                <div class="accordion" style="margin-bottom: 0">
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1690883844"></a>
+        <div id="___" class="container-fluid">
+            <section class="row-fluid">
+                <div class="span2 sidebar">
+                    <div class="accordion" style="margin-bottom: 0">
+                        <div class="accordion-group">
+                            <div class="accordion-heading">
+                                <a class="accordion-toggle " data-toggle="collapse"
+                                    data-target="#namespace-1690883844"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
-            </div>
-            <div id="namespace-1690883844" class="accordion-body collapse in">
-                <div class="accordion-inner">
+                            </div>
+                            <div id="namespace-1690883844" class="accordion-body collapse in">
+                                <div class="accordion-inner">
+
+                                    <div class="accordion" style="margin-bottom: 0">
+                                        <div class="accordion-group">
+                                            <div class="accordion-heading">
+                                                <a class="accordion-toggle collapsed" data-toggle="collapse"
+                                                    data-target="#namespace-1796992185"></a>
+                                                <a href="../namespaces/JVconseil.html"
+                                                    style="margin-left: 30px; padding-left: 0">JVconseil</a>
+                                            </div>
+                                            <div id="namespace-1796992185" class="accordion-body collapse ">
+                                                <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1796992185"></a>
-                                <a href="../namespaces/JVconseil.html" style="margin-left: 30px; padding-left: 0">JVconseil</a>
-            </div>
-            <div id="namespace-1796992185" class="accordion-body collapse ">
-                <div class="accordion-inner">
-
-                                                    <div class="accordion" style="margin-bottom: 0">
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-209036216"></a>
-                                <a href="../namespaces/JVconseil.DkimPhpMailSignature.html" style="margin-left: 30px; padding-left: 0">DkimPhpMailSignature</a>
-            </div>
-            <div id="namespace-209036216" class="accordion-body collapse ">
-                <div class="accordion-inner">
+                                                        <div class="accordion-group">
+                                                            <div class="accordion-heading">
+                                                                <a class="accordion-toggle collapsed"
+                                                                    data-toggle="collapse"
+                                                                    data-target="#namespace-209036216"></a>
+                                                                <a href="../namespaces/JVconseil.DkimPhpMailSignature.html"
+                                                                    style="margin-left: 30px; padding-left: 0">DkimPhpMailSignature</a>
+                                                            </div>
+                                                            <div id="namespace-209036216"
+                                                                class="accordion-body collapse ">
+                                                                <div class="accordion-inner">
 
 
-                    <ul>
-                                                                                                    <li class="class"><a href="../classes/JVconseil.DkimPhpMailSignature.DKIMconfig.html">DKIMconfig</a></li>
-                                                    <li class="class"><a href="../classes/JVconseil.DkimPhpMailSignature.DKIMmail.html">DKIMmail</a></li>
-                                                    <li class="class"><a href="../classes/JVconseil.DkimPhpMailSignature.DKIMsign.html">DKIMsign</a></li>
-                                            </ul>
+                                                                    <ul>
+                                                                        <li class="class"><a
+                                                                                href="../classes/JVconseil.DkimPhpMailSignature.DKIMconfig.html">DKIMconfig</a>
+                                                                        </li>
+                                                                        <li class="class"><a
+                                                                                href="../classes/JVconseil.DkimPhpMailSignature.DKIMmail.html">DKIMmail</a>
+                                                                        </li>
+                                                                        <li class="class"><a
+                                                                                href="../classes/JVconseil.DkimPhpMailSignature.DKIMsign.html">DKIMsign</a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <ul>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <ul>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-            </div>
-        </div>
-    </div>
+            </section>
+            <section class="row-fluid">
+                <div class="span10 offset2">
+                    <div class="row-fluid">
+                        <div class="span8 content class">
+                            <nav>
+                                <a
+                                    href="../namespaces/JVconseil.DkimPhpMailSignature.html">\JVconseil\DkimPhpMailSignature</a>
+                                <i class="icon-level-up"></i>
+                            </nav>
+                            <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i
+                                    class="icon-code"></i></a>
 
-
-                    <ul>
-                                                                                            </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-                    <ul>
-                                                                                            </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-        </div>
-    </section>
-    <section class="row-fluid">
-        <div class="span10 offset2">
-            <div class="row-fluid">
-                <div class="span8 content class">
-                    <nav>
-                                                <a href="../namespaces/JVconseil.DkimPhpMailSignature.html">\JVconseil\DkimPhpMailSignature</a> <i class="icon-level-up"></i>
-                                            </nav>
-                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
-
-                    <h1><small>\JVconseil\DkimPhpMailSignature</small>DKIMmail</h1>
-                    <p><em>DKIMmail class</em></p>
-                    <h3>Usage</h3>
-<pre><code>// init
+                            <h1><small>\JVconseil\DkimPhpMailSignature</small>DKIMmail</h1>
+                            <p><em>DKIMmail class</em></p>
+                            <h3>Usage</h3>
+                            <pre><code>// init
 $mail = new DKIMmail('/www/inc/config/jv-conseil/dkim-php-mail-signature/config.inc.php') ;
 
 // parameters
@@ -221,12 +242,16 @@ $mail-&gt;attach("/path/to/your/attachment.jpg", "NameOfYourAttachment.jpg") ;
 
 // send!
 $mail-&gt;send() ;</code></pre>
-<h3>Sponsorship</h3>
-<p>If this project helps you reduce time to develop, you can give me a cup of coffee ☕️ :-)</p>
-<p><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=P3DGL6EANDY96&amp;source=url"><img src="https://www.paypalobjects.com/en_US/FR/i/btn/btn_donateCC_LG.gif" alt="Donate with PayPal" /></a></p>
+                            <h3>Sponsorship</h3>
+                            <p>If this project helps you reduce time to develop, you can give me a cup of coffee ☕️ :-)
+                            </p>
+                            <p><a
+                                    href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=P3DGL6EANDY96&amp;source=url"><img
+                                        src="https://www.paypalobjects.com/en_US/FR/i/btn/btn_donateCC_LG.gif"
+                                        alt="Donate with PayPal" /></a></p>
 
-                                                                        <h3>Examples</h3>
-                                                                            <h4>Send DKIM sign emails:</h4>
+                            <h3>Examples</h3>
+                            <h4>Send DKIM sign emails:</h4>
                             <pre class="pre-scrollable">&lt;?php
 /**
  * Class example with config file accessed through a class.
@@ -241,7 +266,7 @@ $mail-&gt;send() ;</code></pre>
  * @see https://github.com/JV-conseil-Internet-Consulting/dkim-php-mail-signature
  * @see https://packagist.org/packages/jv-conseil/dkim-php-mail-signature
  * @license EUPL-1.2 license, Copyright (c) 2019-2023 JV conseil – Internet Consulting, All rights reserved.
- * @version v1.2.2
+ * @version v1.2.5
  */
 
 
@@ -285,600 +310,670 @@ try {
     die(&#039;Caught exception: &#039; . $e-&gt;getMessage() . &quot;\r\n&quot;) ;
 }</pre>
 
-                    <section id="summary">
-                        <h2>Summary</h2>
-                        <section class="row-fluid heading">
-                            <section class="span4">
-                                <a href="#methods">Methods</a>
+                            <section id="summary">
+                                <h2>Summary</h2>
+                                <section class="row-fluid heading">
+                                    <section class="span4">
+                                        <a href="#methods">Methods</a>
+                                    </section>
+                                    <section class="span4">
+                                        <a href="#properties">Properties</a>
+                                    </section>
+                                    <section class="span4">
+                                        <a href="#constants">Constants</a>
+                                    </section>
+                                </section>
+                                <section class="row-fluid public">
+                                    <section class="span4">
+                                        <a href="../classes/JVconseil.DkimPhpMailSignature.DKIMmail.html#method___construct"
+                                            class="">__construct()</a><br />
+                                        <a href="../classes/JVconseil.DkimPhpMailSignature.DKIMmail.html#method_attach"
+                                            class="">attach()</a><br />
+                                        <a href="../classes/JVconseil.DkimPhpMailSignature.DKIMmail.html#method_build_message"
+                                            class="">build_message()</a><br />
+                                        <a href="../classes/JVconseil.DkimPhpMailSignature.DKIMmail.html#method_build_multipart"
+                                            class="">build_multipart()</a><br />
+                                        <a href="../classes/JVconseil.DkimPhpMailSignature.DKIMmail.html#method_send"
+                                            class="">send()</a><br />
+                                    </section>
+                                    <section class="span4">
+                                        <a href="../classes/JVconseil.DkimPhpMailSignature.DKIMmail.html#property_to"
+                                            class="">$to</a><br />
+                                        <a href="../classes/JVconseil.DkimPhpMailSignature.DKIMmail.html#property_from"
+                                            class="">$from</a><br />
+                                        <a href="../classes/JVconseil.DkimPhpMailSignature.DKIMmail.html#property_headers"
+                                            class="">$headers</a><br />
+                                        <a href="../classes/JVconseil.DkimPhpMailSignature.DKIMmail.html#property_subject"
+                                            class="">$subject</a><br />
+                                        <a href="../classes/JVconseil.DkimPhpMailSignature.DKIMmail.html#property_body"
+                                            class="">$body</a><br />
+                                        <a href="../classes/JVconseil.DkimPhpMailSignature.DKIMmail.html#property_is_html"
+                                            class="">$is_html</a><br />
+                                        <a href="../classes/JVconseil.DkimPhpMailSignature.DKIMmail.html#property_return_receipt"
+                                            class="">$return_receipt</a><br />
+                                        <a href="../classes/JVconseil.DkimPhpMailSignature.DKIMmail.html#property_parts"
+                                            class="">$parts</a><br />
+                                    </section>
+                                    <section class="span4">
+                                        <em>No constants found</em>
+                                    </section>
+                                </section>
+                                <section class="row-fluid protected">
+                                    <section class="span4">
+                                        <em>No protected methods found</em>
+                                    </section>
+                                    <section class="span4">
+                                        <a href="../classes/JVconseil.DkimPhpMailSignature.DKIMmail.html#property__config_file"
+                                            class="">$_config_file</a><br />
+                                    </section>
+                                    <section class="span4">
+                                        <em>N/A</em>
+                                    </section>
+                                </section>
+                                <section class="row-fluid private">
+                                    <section class="span4">
+                                        <em>No private methods found</em>
+                                    </section>
+                                    <section class="span4">
+                                        <em>No private properties found</em>
+                                    </section>
+                                    <section class="span4">
+                                        <em>N/A</em>
+                                    </section>
+                                </section>
                             </section>
-                            <section class="span4">
-                                <a href="#properties">Properties</a>
-                            </section>
-                            <section class="span4">
-                                <a href="#constants">Constants</a>
-                            </section>
-                        </section>
-                        <section class="row-fluid public">
-                            <section class="span4">
-                                                                    <a href="../classes/JVconseil.DkimPhpMailSignature.DKIMmail.html#method___construct" class="">__construct()</a><br />
-                                                                    <a href="../classes/JVconseil.DkimPhpMailSignature.DKIMmail.html#method_attach" class="">attach()</a><br />
-                                                                    <a href="../classes/JVconseil.DkimPhpMailSignature.DKIMmail.html#method_build_message" class="">build_message()</a><br />
-                                                                    <a href="../classes/JVconseil.DkimPhpMailSignature.DKIMmail.html#method_build_multipart" class="">build_multipart()</a><br />
-                                                                    <a href="../classes/JVconseil.DkimPhpMailSignature.DKIMmail.html#method_send" class="">send()</a><br />
-                                                            </section>
-                            <section class="span4">
-                                                                    <a href="../classes/JVconseil.DkimPhpMailSignature.DKIMmail.html#property_to" class="">$to</a><br />
-                                                                    <a href="../classes/JVconseil.DkimPhpMailSignature.DKIMmail.html#property_from" class="">$from</a><br />
-                                                                    <a href="../classes/JVconseil.DkimPhpMailSignature.DKIMmail.html#property_headers" class="">$headers</a><br />
-                                                                    <a href="../classes/JVconseil.DkimPhpMailSignature.DKIMmail.html#property_subject" class="">$subject</a><br />
-                                                                    <a href="../classes/JVconseil.DkimPhpMailSignature.DKIMmail.html#property_body" class="">$body</a><br />
-                                                                    <a href="../classes/JVconseil.DkimPhpMailSignature.DKIMmail.html#property_is_html" class="">$is_html</a><br />
-                                                                    <a href="../classes/JVconseil.DkimPhpMailSignature.DKIMmail.html#property_return_receipt" class="">$return_receipt</a><br />
-                                                                    <a href="../classes/JVconseil.DkimPhpMailSignature.DKIMmail.html#property_parts" class="">$parts</a><br />
-                                                            </section>
-                            <section class="span4">
-                                                                    <em>No constants found</em>
-                                                            </section>
-                        </section>
-                        <section class="row-fluid protected">
-                            <section class="span4">
-                                                                    <em>No protected methods found</em>
-                                                            </section>
-                            <section class="span4">
-                                                                    <a href="../classes/JVconseil.DkimPhpMailSignature.DKIMmail.html#property__config_file" class="">$_config_file</a><br />
-                                                            </section>
-                            <section class="span4">
-                                <em>N/A</em>
-                            </section>
-                        </section>
-                        <section class="row-fluid private">
-                            <section class="span4">
-                                                                    <em>No private methods found</em>
-                                                            </section>
-                            <section class="span4">
-                                                                    <em>No private properties found</em>
-                                                            </section>
-                            <section class="span4">
-                                <em>N/A</em>
+                        </div>
+                        <aside class="span4 detailsbar">
+
+
+                            <dl>
+                                <dt>File</dt>
+                                <dd><a href="../files/src.DKIMmail.html">
+                                        <div class="path-wrapper">src/DKIMmail.php</div>
+                                    </a></dd>
+                                <dt>Package</dt>
+                                <dd>
+                                    <div class="namespace-wrapper">Default</div>
+                                </dd>
+                                <dt>Class hierarchy</dt>
+                                <dd class="hierarchy">
+                                    <div class="namespace-wrapper">\JVconseil\DkimPhpMailSignature\DKIMmail</div>
+                                </dd>
+
+
+
+
+                                <dt>See also</dt>
+                                <dd><a href="http://www.jv-conseil.net"><span
+                                            class="namespace-wrapper">http://www.jv-conseil.net</span></a></dd>
+                                <dd><a href=""><span
+                                            class="namespace-wrapper">https://github.com/JV-conseil-Internet-Consulting/dkim-php-mail-signature</span></a>
+                                </dd>
+                                <dd><a href=""><span
+                                            class="namespace-wrapper">https://packagist.org/packages/jv-conseil/dkim-php-mail-signature</span></a>
+                                </dd>
+
+                            </dl>
+                            <h2>Tags</h2>
+                            <table class="table table-condensed">
+                                <tr>
+                                    <th>
+                                        author
+                                    </th>
+                                    <td>
+                                        <p>JV conseil — Internet Consulting <a
+                                                href="mailto:contact@jv-conseil.net">contact@jv-conseil.net</a></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        license
+                                    </th>
+                                    <td>
+                                        <p>EUPL-1.2 license, Copyright (c) 2019-2023 JV conseil – Internet Consulting,
+                                            All rights reserved.</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        version
+                                    </th>
+                                    <td>
+                                        <p>v1.2.5</p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </aside>
+                    </div>
+
+
+                    <a id="properties" name="properties"></a>
+                    <div class="row-fluid">
+                        <div class="span8 content class">
+                            <h2>Properties</h2>
+                        </div>
+                        <aside class="span4 detailsbar"></aside>
+                    </div>
+
+                    <div class="row-fluid">
+                        <div class="span8 content class">
+                            <a id="property_to" name="property_to" class="anchor"></a>
+                            <article class="property">
+                                <h3 class="public ">$to</h3>
+                                <pre class="signature">$to : </pre>
+                                <p><em></em></p>
+
+
+                                <h4>Type</h4>
+
+                            </article>
+                        </div>
+                        <aside class="span4 detailsbar">
+                            <h1><i class="icon-arrow-down"></i></h1>
+                            <dl>
+                            </dl>
+                            <h2>Tags</h2>
+                            <table class="table table-condensed">
+                                <tr>
+                                    <td colspan="2"><em>None found</em></td>
+                                </tr>
+                            </table>
+                        </aside>
+                    </div>
+
+                    <div class="row-fluid">
+                        <div class="span8 content class">
+                            <a id="property_from" name="property_from" class="anchor"></a>
+                            <article class="property">
+                                <h3 class="public ">$from</h3>
+                                <pre class="signature">$from : </pre>
+                                <p><em></em></p>
+
+
+                                <h4>Type</h4>
+
+                            </article>
+                        </div>
+                        <aside class="span4 detailsbar">
+                            <h1><i class="icon-arrow-down"></i></h1>
+                            <dl>
+                            </dl>
+                            <h2>Tags</h2>
+                            <table class="table table-condensed">
+                                <tr>
+                                    <td colspan="2"><em>None found</em></td>
+                                </tr>
+                            </table>
+                        </aside>
+                    </div>
+
+                    <div class="row-fluid">
+                        <div class="span8 content class">
+                            <a id="property_headers" name="property_headers" class="anchor"></a>
+                            <article class="property">
+                                <h3 class="public ">$headers</h3>
+                                <pre class="signature">$headers : </pre>
+                                <p><em></em></p>
+
+
+                                <h4>Type</h4>
+
+                            </article>
+                        </div>
+                        <aside class="span4 detailsbar">
+                            <h1><i class="icon-arrow-down"></i></h1>
+                            <dl>
+                            </dl>
+                            <h2>Tags</h2>
+                            <table class="table table-condensed">
+                                <tr>
+                                    <td colspan="2"><em>None found</em></td>
+                                </tr>
+                            </table>
+                        </aside>
+                    </div>
+
+                    <div class="row-fluid">
+                        <div class="span8 content class">
+                            <a id="property_subject" name="property_subject" class="anchor"></a>
+                            <article class="property">
+                                <h3 class="public ">$subject</h3>
+                                <pre class="signature">$subject : </pre>
+                                <p><em></em></p>
+
+
+                                <h4>Type</h4>
+
+                            </article>
+                        </div>
+                        <aside class="span4 detailsbar">
+                            <h1><i class="icon-arrow-down"></i></h1>
+                            <dl>
+                            </dl>
+                            <h2>Tags</h2>
+                            <table class="table table-condensed">
+                                <tr>
+                                    <td colspan="2"><em>None found</em></td>
+                                </tr>
+                            </table>
+                        </aside>
+                    </div>
+
+                    <div class="row-fluid">
+                        <div class="span8 content class">
+                            <a id="property_body" name="property_body" class="anchor"></a>
+                            <article class="property">
+                                <h3 class="public ">$body</h3>
+                                <pre class="signature">$body : </pre>
+                                <p><em></em></p>
+
+
+                                <h4>Type</h4>
+
+                            </article>
+                        </div>
+                        <aside class="span4 detailsbar">
+                            <h1><i class="icon-arrow-down"></i></h1>
+                            <dl>
+                            </dl>
+                            <h2>Tags</h2>
+                            <table class="table table-condensed">
+                                <tr>
+                                    <td colspan="2"><em>None found</em></td>
+                                </tr>
+                            </table>
+                        </aside>
+                    </div>
+
+                    <div class="row-fluid">
+                        <div class="span8 content class">
+                            <a id="property_is_html" name="property_is_html" class="anchor"></a>
+                            <article class="property">
+                                <h3 class="public ">$is_html</h3>
+                                <pre class="signature">$is_html : </pre>
+                                <p><em></em></p>
+
+
+                                <h4>Type</h4>
+
+                            </article>
+                        </div>
+                        <aside class="span4 detailsbar">
+                            <h1><i class="icon-arrow-down"></i></h1>
+                            <dl>
+                            </dl>
+                            <h2>Tags</h2>
+                            <table class="table table-condensed">
+                                <tr>
+                                    <td colspan="2"><em>None found</em></td>
+                                </tr>
+                            </table>
+                        </aside>
+                    </div>
+
+                    <div class="row-fluid">
+                        <div class="span8 content class">
+                            <a id="property_return_receipt" name="property_return_receipt" class="anchor"></a>
+                            <article class="property">
+                                <h3 class="public ">$return_receipt</h3>
+                                <pre class="signature">$return_receipt : </pre>
+                                <p><em></em></p>
+
+
+                                <h4>Type</h4>
+
+                            </article>
+                        </div>
+                        <aside class="span4 detailsbar">
+                            <h1><i class="icon-arrow-down"></i></h1>
+                            <dl>
+                            </dl>
+                            <h2>Tags</h2>
+                            <table class="table table-condensed">
+                                <tr>
+                                    <td colspan="2"><em>None found</em></td>
+                                </tr>
+                            </table>
+                        </aside>
+                    </div>
+
+                    <div class="row-fluid">
+                        <div class="span8 content class">
+                            <a id="property_parts" name="property_parts" class="anchor"></a>
+                            <article class="property">
+                                <h3 class="public ">$parts</h3>
+                                <pre class="signature">$parts : </pre>
+                                <p><em></em></p>
+
+
+                                <h4>Type</h4>
+
+                            </article>
+                        </div>
+                        <aside class="span4 detailsbar">
+                            <h1><i class="icon-arrow-down"></i></h1>
+                            <dl>
+                            </dl>
+                            <h2>Tags</h2>
+                            <table class="table table-condensed">
+                                <tr>
+                                    <td colspan="2"><em>None found</em></td>
+                                </tr>
+                            </table>
+                        </aside>
+                    </div>
+
+                    <div class="row-fluid">
+                        <div class="span8 content class">
+                            <a id="property__config_file" name="property__config_file" class="anchor"></a>
+                            <article class="property">
+                                <h3 class="protected ">$_config_file</h3>
+                                <pre class="signature">$_config_file : string</pre>
+                                <p><em></em></p>
+
+
+                                <h4>Type</h4>
+                                string
+                                &mdash; store the path to your &lt;config/config.inc.php&gt; file
+                            </article>
+                        </div>
+                        <aside class="span4 detailsbar">
+                            <h1><i class="icon-arrow-down"></i></h1>
+                            <dl>
+                            </dl>
+                            <h2>Tags</h2>
+                            <table class="table table-condensed">
+                                <tr>
+                                    <td colspan="2"><em>None found</em></td>
+                                </tr>
+                            </table>
+                        </aside>
+                    </div>
+
+
+                    <a id="methods" name="methods"></a>
+                    <div class="row-fluid">
+                        <div class="span8 content class">
+                            <h2>Methods</h2>
+                        </div>
+                        <aside class="span4 detailsbar"></aside>
+                    </div>
+
+                    <div class="row-fluid">
+                        <div class="span8 content class">
+                            <a id="method___construct" name="method___construct" class="anchor"></a>
+                            <article class="method">
+                                <h3 class="public ">__construct()</h3>
+                                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"
+                                    style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                                <pre class="signature"
+                                    style="margin-right: 54px;">__construct(  <span class="argument">$_config_file</span>) </pre>
+                                <p><em>constructeur</em></p>
+
+
+                                <h4>Parameters</h4>
+                                <table class="table table-condensed table-hover">
+                                    <tr>
+                                        <td></td>
+                                        <td>$_config_file </td>
+                                        <td></td>
+                                    </tr>
+                                </table>
+
+
+
+                            </article>
+                        </div>
+                        <aside class="span4 detailsbar">
+                            <h1><i class="icon-arrow-down"></i></h1>
+                            <dl>
+                            </dl>
+                            <h2>Tags</h2>
+                            <table class="table table-condensed">
+                                <tr>
+                                    <td colspan="2"><em>None found</em></td>
+                                </tr>
+                            </table>
+                        </aside>
+                    </div>
+
+                    <div class="row-fluid">
+                        <div class="span8 content class">
+                            <a id="method_attach" name="method_attach" class="anchor"></a>
+                            <article class="method">
+                                <h3 class="public ">attach()</h3>
+                                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"
+                                    style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                                <pre class="signature"
+                                    style="margin-right: 54px;">attach(  <span class="argument">$message</span>,   <span class="argument">$name</span>,   <span class="argument">$ctype = &#039;&#039;</span>) </pre>
+                                <p><em></em></p>
+
+
+                                <h4>Parameters</h4>
+                                <table class="table table-condensed table-hover">
+                                    <tr>
+                                        <td></td>
+                                        <td>$message </td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>$name </td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>$ctype </td>
+                                        <td></td>
+                                    </tr>
+                                </table>
+
+
+
+                            </article>
+                        </div>
+                        <aside class="span4 detailsbar">
+                            <h1><i class="icon-arrow-down"></i></h1>
+                            <dl>
+                            </dl>
+                            <h2>Tags</h2>
+                            <table class="table table-condensed">
+                                <tr>
+                                    <td colspan="2"><em>None found</em></td>
+                                </tr>
+                            </table>
+                        </aside>
+                    </div>
+
+                    <div class="row-fluid">
+                        <div class="span8 content class">
+                            <a id="method_build_message" name="method_build_message" class="anchor"></a>
+                            <article class="method">
+                                <h3 class="public ">build_message()</h3>
+                                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"
+                                    style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                                <pre class="signature"
+                                    style="margin-right: 54px;">build_message(  <span class="argument">$part</span>,   <span class="argument">$charset = &#039;UTF-8&#039;</span>) </pre>
+                                <p><em></em></p>
+
+
+                                <h4>Parameters</h4>
+                                <table class="table table-condensed table-hover">
+                                    <tr>
+                                        <td></td>
+                                        <td>$part </td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>$charset </td>
+                                        <td></td>
+                                    </tr>
+                                </table>
+
+
+
+                            </article>
+                        </div>
+                        <aside class="span4 detailsbar">
+                            <h1><i class="icon-arrow-down"></i></h1>
+                            <dl>
+                            </dl>
+                            <h2>Tags</h2>
+                            <table class="table table-condensed">
+                                <tr>
+                                    <td colspan="2"><em>None found</em></td>
+                                </tr>
+                            </table>
+                        </aside>
+                    </div>
+
+                    <div class="row-fluid">
+                        <div class="span8 content class">
+                            <a id="method_build_multipart" name="method_build_multipart" class="anchor"></a>
+                            <article class="method">
+                                <h3 class="public ">build_multipart()</h3>
+                                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"
+                                    style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                                <pre class="signature"
+                                    style="margin-right: 54px;">build_multipart(  <span class="argument">$type = &#039;mixed&#039;</span>,   <span class="argument">$charset = &#039;UTF-8&#039;</span>,   <span class="argument">$boundary = &#039;&#039;</span>) </pre>
+                                <p><em></em></p>
+
+
+                                <h4>Parameters</h4>
+                                <table class="table table-condensed table-hover">
+                                    <tr>
+                                        <td></td>
+                                        <td>$type </td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>$charset </td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>$boundary </td>
+                                        <td></td>
+                                    </tr>
+                                </table>
+
+
+
+                            </article>
+                        </div>
+                        <aside class="span4 detailsbar">
+                            <h1><i class="icon-arrow-down"></i></h1>
+                            <dl>
+                            </dl>
+                            <h2>Tags</h2>
+                            <table class="table table-condensed">
+                                <tr>
+                                    <td colspan="2"><em>None found</em></td>
+                                </tr>
+                            </table>
+                        </aside>
+                    </div>
+
+                    <div class="row-fluid">
+                        <div class="span8 content class">
+                            <a id="method_send" name="method_send" class="anchor"></a>
+                            <article class="method">
+                                <h3 class="public ">send()</h3>
+                                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"
+                                    style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                                <pre class="signature"
+                                    style="margin-right: 54px;">send(string  <span class="argument">$test = false</span>) </pre>
+                                <p><em>Send the mail</em></p>
+
+
+                                <h4>Parameters</h4>
+                                <table class="table table-condensed table-hover">
+                                    <tr>
+                                        <td>string</td>
+                                        <td>$test </td>
+                                        <td>
+                                            <p>= true : do not send the email but displays the command</p>
+                                        </td>
+                                    </tr>
+                                </table>
+
+
+
+                            </article>
+                        </div>
+                        <aside class="span4 detailsbar">
+                            <h1><i class="icon-arrow-down"></i></h1>
+                            <dl>
+                            </dl>
+                            <h2>Tags</h2>
+                            <table class="table table-condensed">
+                                <tr>
+                                    <td colspan="2"><em>None found</em></td>
+                                </tr>
+                            </table>
+                        </aside>
+                    </div>
+
+                </div>
+            </section>
+
+            <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog"
+                aria-labelledby="source-view-label" aria-hidden="true">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h3 id="source-view-label">DKIMmail.php</h3>
+                </div>
+                <div class="modal-body">
+                    <pre data-src="../files/src/DKIMmail.php.txt" class="language-php line-numbers"></pre>
+                </div>
+            </div>
+
+            <footer class="row-fluid">
+                <section class="span10 offset2">
+                    <section class="row-fluid">
+                        <section class="span10 offset1">
+                            <section class="row-fluid footer-sections">
+                                <section class="span4">
+                                    <h1><i class="icon-code"></i></h1>
+                                    <div>
+                                        <ul>
+                                            <li><a href="../namespaces/JVconseil.html">\JVconseil</a></li>
+                                        </ul>
+                                    </div>
+                                </section>
+                                <section class="span4">
+                                    <h1><i class="icon-bar-chart"></i></h1>
+                                    <div>
+                                        <ul>
+                                            <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                        </ul>
+                                    </div>
+                                </section>
+                                <section class="span4">
+                                    <h1><i class="icon-pushpin"></i></h1>
+                                    <div>
+                                        <ul>
+                                            <li><a href="../reports/errors.html">Errors</a></li>
+                                            <li><a href="../reports/markers.html">Markers</a></li>
+                                        </ul>
+                                    </div>
+                                </section>
                             </section>
                         </section>
                     </section>
-                </div>
-                <aside class="span4 detailsbar">
-
-
-                    <dl>
-                        <dt>File</dt>
-                            <dd><a href="../files/src.DKIMmail.html"><div class="path-wrapper">src/DKIMmail.php</div></a></dd>
-                                                <dt>Package</dt>
-                            <dd><div class="namespace-wrapper">Default</div></dd>
-                                                <dt>Class hierarchy</dt>
-                            <dd class="hierarchy">
-                                                                                                                                                                    <div class="namespace-wrapper">\JVconseil\DkimPhpMailSignature\DKIMmail</div>
-                            </dd>
-
-
-
-
-                                                                            <dt>See also</dt>
-                                                                                        <dd><a href="http://www.jv-conseil.net"><span class="namespace-wrapper">http://www.jv-conseil.net</span></a></dd>
-                                                            <dd><a href=""><span class="namespace-wrapper">https://github.com/JV-conseil-Internet-Consulting/dkim-php-mail-signature</span></a></dd>
-                                                            <dd><a href=""><span class="namespace-wrapper">https://packagist.org/packages/jv-conseil/dkim-php-mail-signature</span></a></dd>
-
-                                                                        </dl>
-                    <h2>Tags</h2>
-                    <table class="table table-condensed">
-                                            <tr>
-                            <th>
-                                author
-                            </th>
-                            <td>
-                                                                    <p>JV conseil — Internet Consulting <a href="mailto:contact@jv-conseil.net">contact@jv-conseil.net</a></p>
-                                                            </td>
-                        </tr>
-                                            <tr>
-                            <th>
-                                license
-                            </th>
-                            <td>
-                                                                    <p>EUPL-1.2 license, Copyright (c) 2019-2023 JV conseil – Internet Consulting, All rights reserved.</p>
-                                                            </td>
-                        </tr>
-                                            <tr>
-                            <th>
-                                version
-                            </th>
-                            <td>
-                                                                    <p>v1.2.2</p>
-                                                            </td>
-                        </tr>
-                                        </table>
-                </aside>
-            </div>
-
-
-                                    <a id="properties" name="properties"></a>
-            <div class="row-fluid">
-                <div class="span8 content class">
-                    <h2>Properties</h2>
-                </div>
-                <aside class="span4 detailsbar"></aside>
-            </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="property_to" name="property_to" class="anchor"></a>
-            <article class="property">
-                <h3 class="public ">$to</h3>
-                <pre class="signature">$to : </pre>
-                <p><em></em></p>
-
-
-                                <h4>Type</h4>
-
-                                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="property_from" name="property_from" class="anchor"></a>
-            <article class="property">
-                <h3 class="public ">$from</h3>
-                <pre class="signature">$from : </pre>
-                <p><em></em></p>
-
-
-                                <h4>Type</h4>
-
-                                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="property_headers" name="property_headers" class="anchor"></a>
-            <article class="property">
-                <h3 class="public ">$headers</h3>
-                <pre class="signature">$headers : </pre>
-                <p><em></em></p>
-
-
-                                <h4>Type</h4>
-
-                                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="property_subject" name="property_subject" class="anchor"></a>
-            <article class="property">
-                <h3 class="public ">$subject</h3>
-                <pre class="signature">$subject : </pre>
-                <p><em></em></p>
-
-
-                                <h4>Type</h4>
-
-                                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="property_body" name="property_body" class="anchor"></a>
-            <article class="property">
-                <h3 class="public ">$body</h3>
-                <pre class="signature">$body : </pre>
-                <p><em></em></p>
-
-
-                                <h4>Type</h4>
-
-                                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="property_is_html" name="property_is_html" class="anchor"></a>
-            <article class="property">
-                <h3 class="public ">$is_html</h3>
-                <pre class="signature">$is_html : </pre>
-                <p><em></em></p>
-
-
-                                <h4>Type</h4>
-
-                                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="property_return_receipt" name="property_return_receipt" class="anchor"></a>
-            <article class="property">
-                <h3 class="public ">$return_receipt</h3>
-                <pre class="signature">$return_receipt : </pre>
-                <p><em></em></p>
-
-
-                                <h4>Type</h4>
-
-                                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="property_parts" name="property_parts" class="anchor"></a>
-            <article class="property">
-                <h3 class="public ">$parts</h3>
-                <pre class="signature">$parts : </pre>
-                <p><em></em></p>
-
-
-                                <h4>Type</h4>
-
-                                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="property__config_file" name="property__config_file" class="anchor"></a>
-            <article class="property">
-                <h3 class="protected ">$_config_file</h3>
-                <pre class="signature">$_config_file : string</pre>
-                <p><em></em></p>
-
-
-                                <h4>Type</h4>
-                string
-                &mdash; store the path to your &lt;config/config.inc.php&gt; file                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-
-                                    <a id="methods" name="methods"></a>
-            <div class="row-fluid">
-                <div class="span8 content class"><h2>Methods</h2></div>
-                <aside class="span4 detailsbar"></aside>
-            </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method___construct" name="method___construct" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">__construct()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">__construct(  <span class="argument">$_config_file</span>) </pre>
-                <p><em>constructeur</em></p>
-
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td></td>
-                                <td>$_config_file </td>
-                                <td></td>
-                            </tr>
-                                            </table>
-
-
-
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_attach" name="method_attach" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">attach()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">attach(  <span class="argument">$message</span>,   <span class="argument">$name</span>,   <span class="argument">$ctype = &#039;&#039;</span>) </pre>
-                <p><em></em></p>
-
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td></td>
-                                <td>$message </td>
-                                <td></td>
-                            </tr>
-                                                    <tr>
-                                <td></td>
-                                <td>$name </td>
-                                <td></td>
-                            </tr>
-                                                    <tr>
-                                <td></td>
-                                <td>$ctype </td>
-                                <td></td>
-                            </tr>
-                                            </table>
-
-
-
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_build_message" name="method_build_message" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">build_message()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">build_message(  <span class="argument">$part</span>,   <span class="argument">$charset = &#039;UTF-8&#039;</span>) </pre>
-                <p><em></em></p>
-
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td></td>
-                                <td>$part </td>
-                                <td></td>
-                            </tr>
-                                                    <tr>
-                                <td></td>
-                                <td>$charset </td>
-                                <td></td>
-                            </tr>
-                                            </table>
-
-
-
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_build_multipart" name="method_build_multipart" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">build_multipart()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">build_multipart(  <span class="argument">$type = &#039;mixed&#039;</span>,   <span class="argument">$charset = &#039;UTF-8&#039;</span>,   <span class="argument">$boundary = &#039;&#039;</span>) </pre>
-                <p><em></em></p>
-
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td></td>
-                                <td>$type </td>
-                                <td></td>
-                            </tr>
-                                                    <tr>
-                                <td></td>
-                                <td>$charset </td>
-                                <td></td>
-                            </tr>
-                                                    <tr>
-                                <td></td>
-                                <td>$boundary </td>
-                                <td></td>
-                            </tr>
-                                            </table>
-
-
-
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_send" name="method_send" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">send()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">send(string  <span class="argument">$test = false</span>) </pre>
-                <p><em>Send the mail</em></p>
-
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>string</td>
-                                <td>$test </td>
-                                <td><p>= true : do not send the email but displays the command</p></td>
-                            </tr>
-                                            </table>
-
-
-
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                                                    </div>
-    </section>
-
-    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h3 id="source-view-label">DKIMmail.php</h3>
-        </div>
-        <div class="modal-body">
-            <pre data-src="../files/src/DKIMmail.php.txt" class="language-php line-numbers"></pre>
-        </div>
-    </div>
-
-    <footer class="row-fluid">
-        <section class="span10 offset2">
-            <section class="row-fluid">
-                <section class="span10 offset1">
-                    <section class="row-fluid footer-sections">
-                        <section class="span4">
-                                                        <h1><i class="icon-code"></i></h1>
-                            <div>
-                                <ul>
-                                                                            <li><a href="../namespaces/JVconseil.html">\JVconseil</a></li>
-                                                                    </ul>
-                            </div>
-                        </section>
-                        <section class="span4">
-                                                        <h1><i class="icon-bar-chart"></i></h1>
-                            <div>
-                                <ul>
-                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
-                                </ul>
-                            </div>
-                        </section>
-                        <section class="span4">
-                                                        <h1><i class="icon-pushpin"></i></h1>
-                            <div>
-                                <ul>
-                                    <li><a href="../reports/errors.html">Errors</a></li>
-                                    <li><a href="../reports/markers.html">Markers</a></li>
-                                </ul>
-                            </div>
+                    <section class="row-fluid">
+                        <section class="span10 offset1">
+                            <hr />
+                            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                            on November 19th, 2019 at 16:36.
                         </section>
                     </section>
                 </section>
-            </section>
-            <section class="row-fluid">
-                <section class="span10 offset1">
-                    <hr />
-                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on November 19th, 2019 at 16:36.
-                </section>
-            </section>
-        </section>
-    </footer>
-</div>
+            </footer>
+        </div>
 
-</body>
+    </body>
+
 </html>

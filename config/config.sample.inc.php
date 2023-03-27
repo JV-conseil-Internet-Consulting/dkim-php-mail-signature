@@ -53,7 +53,7 @@
  * @see https://github.com/JV-conseil-Internet-Consulting/dkim-php-mail-signature
  * @see https://packagist.org/packages/jv-conseil/dkim-php-mail-signature
  * @license EUPL-1.2 license, Copyright (c) 2019-2023 JV conseil – Internet Consulting, All rights reserved.
- * @version v1.2.2
+ * @version v1.2.5
  */
 return array(
   'domain' => 'example.com',
